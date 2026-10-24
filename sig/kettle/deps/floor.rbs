@@ -1,8 +1,10 @@
 module Kettle
   module Deps
     module Floor
+      module Version
+        VERSION: String
+      end
       VERSION: String
-      # See the writing guide of rbs: https://github.com/ruby/rbs#guides
     end
   end
 end
