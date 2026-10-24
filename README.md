@@ -170,6 +170,10 @@ and `--only GEM[,GEM...]` to limit the update set. The `major`, `minor`, and
 are still checked before a target is accepted. Changes use Prism AST source
 locations rather than text substitutions.
 
+Use `--events` to stream compact NDJSON progress events to stdout; the normal
+human summary moves to stderr so the stream remains machine-readable. Events
+use kettle-ndjson's versioned `run_start`, `command_step`, and `summary` schema.
+
 ## 🦷 FLOSS Funding
 
 While kettle-dev tools are free software and will always be, the project would benefit immensely from some funding.

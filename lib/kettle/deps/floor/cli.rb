@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
+require "kettle/ndjson"
 require "open3"
 require "optparse"
 require "yaml"
@@ -19,10 +20,16 @@ module Kettle
             out.puts(parser(defaults: defaults))
             return 0
           end
+          if options[:events] && options[:json]
+            raise OptionParser::InvalidOption, "--events cannot be combined with --json"
+          end
           config = load_config(options.fetch(:config_path))
           sources = options.fetch(:sources).empty? ? Array(config["sources"] || defaults[:sources] || ["*.gemspec"]) : options.fetch(:sources)
           target_versions = config.fetch("target_versions", {}).merge(options.fetch(:target_versions))
           holds = config.fetch("holds", {})
+          event_types = %w[run_start command_step summary]
+          events = Kettle::Ndjson.event_stream(out, types: event_types.join(","), event_types: event_types) if options[:events]
+          Kettle::Ndjson.emit_event(events, "run_start", command: "kettle-deps-floor", project_root: options.fetch(:project_root))
           updater_options = {
             project_root: options.fetch(:project_root),
             sources: sources,
@@ -45,9 +52,10 @@ module Kettle
           else
             planned
           end
+          emit_dependency_floor_events(events, result, write: options[:write])
           changelog_result = write_changelog(options, config, result, defaults) if options[:write] && options[:changelog] && result.fetch(:updates).positive?
           commit_result = commit_changes(options, result, changelog_result) if options[:write] && options[:commit] && result.fetch(:updates).positive?
-          print_result(out, result, commit_result, changelog_result, json: options[:json])
+          print_result(options[:events] ? err : out, result, commit_result, changelog_result, json: options[:json])
           return 1 if options[:check] && result.fetch(:updates).positive?
 
           0
@@ -72,7 +80,8 @@ module Kettle
             check: false,
             commit: true,
             changelog: true,
-            json: false
+            json: false,
+            events: false
           }
           parser(defaults: defaults, options: options).parse!(argv, into: options)
           options[:project_root] = File.expand_path(argv.shift || options.fetch(:project_root))
@@ -100,6 +109,7 @@ module Kettle
             opts.on("--[no-]changelog", "Upsert an Unreleased changelog entry when writing (default: true).") { |value| options[:changelog] = value }
             opts.on("--config PATH", "Read additional sources and holds from YAML.") { |value| options[:config_path] = File.expand_path(value) }
             opts.on("--json", "Print a machine-readable JSON report.") { options[:json] = true }
+            opts.on("--events", "Emit compact NDJSON progress events to stdout; send the human report to stderr.") { options[:events] = true }
             opts.on("-h", "--help", "Print this help.") { options[:help] = true }
           end
         end
@@ -162,6 +172,39 @@ module Kettle
           return nil if allow_failure
 
           raise "git #{args.join(" ")} failed: #{stderr.empty? ? stdout : stderr}"
+        end
+
+        def self.emit_dependency_floor_events(events, result, write:)
+          return unless events
+
+          result.fetch(:planned_changes).each_with_index do |change, index|
+            Kettle::Ndjson.emit_event(
+              events,
+              "command_step",
+              phase: "dependency_floor",
+              name: "raise_floor",
+              status: write ? "updated" : "planned",
+              index: index + 1,
+              total: result.fetch(:planned_changes).length,
+              gem_name: change.fetch(:name),
+              path: change.fetch(:relative_path),
+              current_floor: change.fetch(:current_floor),
+              new_floor: change.fetch(:new_floor)
+            )
+          end
+          status = if write
+            "updated"
+          else
+            "planned"
+          end
+          status = "ok" unless result.fetch(:updates).positive?
+          Kettle::Ndjson.emit_summary_event(
+            events,
+            command: "kettle-deps-floor",
+            status: status,
+            updates: result.fetch(:updates),
+            updated_dependencies: result.fetch(:updated_dependencies)
+          )
         end
 
         def self.print_result(out, result, commit_result, changelog_result, json:)

@@ -96,6 +96,7 @@ Gem::Specification.new do |spec|
 
   # Utilities
   spec.add_dependency("kettle-dev", "~> 3.1", ">= 3.1.25")
+  spec.add_dependency("kettle-ndjson", "~> 0.1", ">= 0.1.20")              # shared NDJSON event stream
   spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.16")              # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased

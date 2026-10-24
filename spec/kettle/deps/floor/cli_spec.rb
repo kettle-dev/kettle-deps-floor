@@ -23,6 +23,16 @@ RSpec.describe Kettle::Deps::Floor::CLI do
     expect(err.string).to eq("")
   end
 
+  it "rejects combining NDJSON events with the JSON report" do
+    out = StringIO.new
+    err = StringIO.new
+
+    status = described_class.run(["--events", "--json", @root], out: out, err: err)
+
+    expect(status).to eq(2)
+    expect(err.string).to include("cannot be combined")
+  end
+
   it "writes explicit targets without changelog or commit when opted out" do
     gemspec = File.join(@root, "example.gemspec")
     File.write(gemspec, %(spec.add_dependency("token-resolver", "~> 2.0", ">= 2.0.4")\n))
@@ -175,6 +185,43 @@ RSpec.describe Kettle::Deps::Floor::CLI do
     expect(status).to eq(0)
     expect(report.fetch("planned_changes").first).to include("name" => "token-resolver", "new_floor" => "2.0.14")
     expect(err.string).to eq("")
+  end
+
+  it "emits dependency floor NDJSON events with the shared event schema" do
+    gemspec = File.join(@root, "example.gemspec")
+    File.write(gemspec, %(spec.add_dependency("token-resolver", "~> 2.0", ">= 2.0.4")\n))
+    out = StringIO.new
+    err = StringIO.new
+
+    status = described_class.run(
+      ["--events", "--no-changelog", "--no-commit", "--target", "token-resolver=2.0.14", "--source", "*.gemspec", @root],
+      out: out,
+      err: err
+    )
+
+    events = out.string.lines.map { |line| JSON.parse(line) }
+    expect(status).to eq(0)
+    expect(events.map { |event| event.fetch("type") }).to eq(%w[run_start command_step summary])
+    expect(events).to all(include("event_version" => 1))
+    expect(events[1]).to include("phase" => "dependency_floor", "status" => "planned", "gem_name" => "token-resolver")
+    expect(err.string).to include("deps-floor: mode=dry-run")
+  end
+
+  it "reports NDJSON events as updated for write mode" do
+    gemspec = File.join(@root, "example.gemspec")
+    File.write(gemspec, %(spec.add_dependency("token-resolver", "~> 2.0", ">= 2.0.4")\n))
+    out = StringIO.new
+    err = StringIO.new
+
+    status = described_class.run(
+      ["--events", "--write", "--no-changelog", "--no-commit", "--target", "token-resolver=2.0.14", "--source", "*.gemspec", @root],
+      out: out,
+      err: err
+    )
+
+    events = out.string.lines.map { |line| JSON.parse(line) }
+    expect(status).to eq(0)
+    expect(events[1]).to include("status" => "updated", "gem_name" => "token-resolver")
   end
 
   it "reports stale explicit targets in check mode without writing" do

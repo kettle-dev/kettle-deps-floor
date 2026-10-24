@@ -36,6 +36,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - [kc] generic-dependency-floor-manager: Add a reusable Prism-based dependency-floor updater with configurable Ruby source globs, explicit family target versions, bounded RubyGems upgrades, holds, dry-run/check/write modes, and safe changelog/commit orchestration.
 
+- [kc] ndjson-event-stream: Add --events output using kettle-ndjson for versioned run_start, command_step, and summary records; keep human output on stderr and JSON reports mutually exclusive with event mode.
+
 ### Changed
 
 - kettle-jem-template-20260716-002 - Gemspecs now ship fewer repository-only
