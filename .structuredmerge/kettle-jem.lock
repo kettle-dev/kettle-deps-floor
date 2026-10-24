@@ -8,12 +8,125 @@ template_state:
     last_entry_date: '2026-09-13'
   maintenance_changelog:
     kettle-jem/template:
+    - ".aiignore"
+    - ".config/mise/env.sh"
+    - ".devcontainer/apt-install/devcontainer-feature.json"
+    - ".devcontainer/apt-install/install.sh"
+    - ".devcontainer/devcontainer.json"
+    - ".devcontainer/scripts/setup-tree-sitter.sh"
+    - ".env.local.example"
+    - ".envrc"
+    - ".gemrc"
+    - ".git-hooks/commit-msg"
+    - ".git-hooks/commit-subjects-goalie.txt"
+    - ".git-hooks/footer-template.erb.txt"
+    - ".git-hooks/prepare-commit-msg"
+    - ".github/.codecov.yml"
+    - ".github/FUNDING.yml"
+    - ".github/copilot_instructions.md"
+    - ".github/dependabot.yml"
+    - ".github/workflows/auto-assign.yml"
     - ".github/workflows/coverage.yml"
+    - ".github/workflows/current.yml"
+    - ".github/workflows/dep-heads.yml"
+    - ".github/workflows/dependency-review.yml"
+    - ".github/workflows/heads.yml"
+    - ".github/workflows/jruby-10.0.yml"
+    - ".github/workflows/jruby.yml"
+    - ".github/workflows/license-eye.yml"
+    - ".github/workflows/locked_deps.yml"
+    - ".github/workflows/opencollective.yml"
+    - ".github/workflows/ruby-3.2.yml"
+    - ".github/workflows/ruby-3.3.yml"
+    - ".github/workflows/ruby-3.4.yml"
+    - ".github/workflows/style.yml"
+    - ".github/workflows/templating.yml"
+    - ".github/workflows/truffle.yml"
+    - ".github/workflows/truffleruby-24.2.yml"
+    - ".github/workflows/truffleruby-25.0.yml"
+    - ".github/workflows/truffleruby-33.0.yml"
+    - ".github/workflows/unlocked_deps.yml"
+    - ".gitignore"
+    - ".gitlab-ci.yml"
+    - ".idea/.gitignore"
+    - ".licenserc.yaml"
+    - ".opencollective.yml"
+    - ".qlty/qlty.toml"
+    - ".rspec"
+    - ".rubocop"
+    - ".rubocop.yml"
+    - ".rubocop_rspec.yml"
+    - ".simplecov"
+    - ".structuredmerge/git-drivers.toml"
+    - ".yard-lint.yml"
+    - ".yardignore"
+    - ".yardopts"
+    - AGENTS.md
+    - Appraisal.root.gemfile
+    - Appraisals
+    - CITATION.cff
+    - CODE_OF_CONDUCT.md
+    - CONTRIBUTING.md
+    - FUNDING.md
+    - Gemfile
+    - IRP.md
+    - LICENSE.md
+    - MIT.md
     - README.md
+    - RUBOCOP.md
     - Rakefile
+    - SECURITY.md
+    - bin/turbo_tests2
+    - certs/pboling.pem
+    - gemfiles/modular/benchmark/r4/v0.5.gemfile
+    - gemfiles/modular/benchmark/vHEAD.gemfile
+    - gemfiles/modular/cgi/r4/v0.5.gemfile
+    - gemfiles/modular/cgi/vHEAD.gemfile
+    - gemfiles/modular/changelog.gemfile
+    - gemfiles/modular/coverage.gemfile
     - gemfiles/modular/coverage_local.gemfile
+    - gemfiles/modular/debug.gemfile
+    - gemfiles/modular/documentation.gemfile
+    - gemfiles/modular/documentation_local.gemfile
+    - gemfiles/modular/erb/r2/v3.0.gemfile
+    - gemfiles/modular/erb/r3/v5.0.gemfile
+    - gemfiles/modular/erb/r4/v5.0.gemfile
+    - gemfiles/modular/erb/vHEAD.gemfile
+    - gemfiles/modular/json/truffleruby_22_3.gemfile
+    - gemfiles/modular/json/truffleruby_23_1.gemfile
+    - gemfiles/modular/mutex_m/r2/v0.3.gemfile
+    - gemfiles/modular/mutex_m/r3/v0.3.gemfile
+    - gemfiles/modular/mutex_m/r4/v0.3.gemfile
+    - gemfiles/modular/mutex_m/vHEAD.gemfile
+    - gemfiles/modular/optional.gemfile
+    - gemfiles/modular/ostruct/r4/v0.6.gemfile
+    - gemfiles/modular/rspec.gemfile
     - gemfiles/modular/runtime_heads.gemfile
+    - gemfiles/modular/stringio/r2/v3.0.gemfile
+    - gemfiles/modular/stringio/r3/v3.0.gemfile
+    - gemfiles/modular/stringio/r4/v3.0.gemfile
+    - gemfiles/modular/stringio/vHEAD.gemfile
+    - gemfiles/modular/style.gemfile
+    - gemfiles/modular/style_local.gemfile
+    - gemfiles/modular/templating.gemfile
     - gemfiles/modular/templating_local.gemfile
+    - gemfiles/modular/webrick/r4/v1.9.gemfile
+    - gemfiles/modular/webrick/vHEAD.gemfile
+    - gemfiles/modular/x_std_libs.gemfile
+    - gemfiles/modular/x_std_libs/r2/libs.gemfile
+    - gemfiles/modular/x_std_libs/r3.1/libs.gemfile
+    - gemfiles/modular/x_std_libs/r3/libs.gemfile
+    - gemfiles/modular/x_std_libs/r4/libs.gemfile
+    - gemfiles/modular/x_std_libs/vHEAD.gemfile
+    - kettle-deps-floor.gemspec
+    - lib/kettle/deps/floor.rb
+    - lib/kettle/deps/floor/version.rb
+    - mise.toml
+    - parsers.toml
+    - sig/kettle/deps/floor.rbs
+    - spec/README.md
+    - spec/kettle/deps/floor/version_spec.rb
+    - spec/spec_helper.rb
   checksums:
     ".aiignore.example": 48a5dfdd93afd1a15fdce39cc28ca9920263f00018b0968ab031fa744521e5ce
     ".config/mise/env.sh": aeea5a2ab489ba6e5467ae8de6e386ec8c8fe4ff31a044e69d0cd6a092dd6654
