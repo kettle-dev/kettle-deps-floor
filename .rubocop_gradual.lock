@@ -1,9 +1,5 @@
 {
   "gemfiles/modular/style_local.gemfile:2466659765": [
     [71, 23, 20, "Style/SafeNavigation: Use safe navigation (`&.`) instead of checking if an object exists before calling the method.", 1851388465]
-  ],
-  "spec/kettle/deps/floor_spec.rb:3801272786": [
-    [9, 12, 5, "RSpec/ExpectActual: Provide the actual value you are testing to `expect(...)`.", 170962968],
-    [9, 22, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785]
   ]
 }

@@ -2,12 +2,14 @@
 
 require "version_gem"
 require_relative "floor/version"
+require_relative "floor/registry_resolver"
+require_relative "floor/updater"
+require_relative "floor/cli"
 
 module Kettle
   module Deps
     module Floor
       class Error < StandardError; end
-      # Your code goes here...
     end
   end
 end

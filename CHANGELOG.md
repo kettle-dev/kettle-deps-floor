@@ -34,6 +34,8 @@ Please file a bug if you notice a violation of semantic versioning.
   `jruby`). Review each entry and pick a resolution per the project's own
   engine support needs.
 
+- [kc] generic-dependency-floor-manager: Add a reusable Prism-based dependency-floor updater with configurable Ruby source globs, explicit family target versions, bounded RubyGems upgrades, holds, dry-run/check/write modes, and safe changelog/commit orchestration.
+
 ### Changed
 
 - kettle-jem-template-20260716-002 - Gemspecs now ship fewer repository-only

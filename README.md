@@ -124,9 +124,51 @@ gem install kettle-deps-floor
 
 ## ⚙️ Configuration
 
+By default, `kettle-deps-floor` scans `*.gemspec` in the selected project root
+and queries RubyGems for newer compatible versions. A project may add
+`.kettle-deps-floor.yml` to configure source globs, explicit family-release
+versions, and dependency holds:
+
+```yaml
+sources:
+  - "*.gemspec"
+  - "Gemfile"
+target_versions:
+  token-resolver: "2.0.14"
+holds:
+  rubocop-minitest: "Wait until the standard gem range permits this release."
+```
+
+`target_versions` is useful for sibling-family lockstep releases. Holds suppress
+a named dependency from automatic updates. Use quoted version strings.
+
 ## 🔧 Basic Usage
 
-TODO: Write usage instructions here
+Preview compatible dependency-floor updates without changing files:
+
+```console
+bundle exec kettle-deps-floor --upgrade patch
+```
+
+Check a family member against an explicit just-released sibling version:
+
+```console
+bundle exec kettle-deps-floor --check --target token-resolver=2.0.14
+```
+
+Apply updates, add a keyed Unreleased changelog entry, and commit only the
+changed source files (the default write behavior):
+
+```console
+bundle exec kettle-deps-floor --write --upgrade minor
+```
+
+Use `--no-commit` to write without committing, `--no-changelog` to omit the
+changelog update, `--source GLOB` to add or override scanned Ruby source paths,
+and `--only GEM[,GEM...]` to limit the update set. The `major`, `minor`, and
+`patch` limits constrain registry candidates; existing non-floor requirements
+are still checked before a target is accepted. Changes use Prism AST source
+locations rather than text substitutions.
 
 ## 🦷 FLOSS Funding
 
