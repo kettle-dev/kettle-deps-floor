@@ -688,7 +688,7 @@ files:
   CHANGELOG.md:
     recipe: template_source_application_CHANGELOG_md
     action: write
-    dest_sha256: 18b22849818bb2b77ac5b625bc380bea83d0278b41db0158ef21f6a813f23125
+    dest_sha256: 6e1e0811407e85b46610fa2dbee1153dbfa369f04732bbebbabb3fbd8776f803
     input_fingerprint: e03c1f1f3992ae89a13a3ffe564a0f82870b89c0ceb6bd5ac7c63659a2c4aea3
     template_sources:
     - CHANGELOG.md.example
@@ -744,7 +744,7 @@ files:
   README.md:
     recipe: template_source_application_README_md
     action: write
-    dest_sha256: 499bde667f3289c3e131e5a27f3e3d97c27729151bb1bcbed2c1034421dfd3d8
+    dest_sha256: cca02dd1ca77e3226066421873435c893e937c3f0f1cb39f60facdf51ccffb73
     input_fingerprint: 70ccd7ce9d97d3649173cdf831577ad9643f0b23c325f0f2faf45fe9a79b404a
     template_sources:
     - README.md.example
