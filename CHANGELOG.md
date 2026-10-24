@@ -107,6 +107,12 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Lower the kettle-dev gemspec floor to the released 3.1.24; 3.1.25 is not yet published, which made the gem unresolvable from a clean bundle.
 
+- Declare the prism runtime dependency; the AST-based floor parsing needs it and it is only a default gem on Ruby 3.3+, so older Rubies could not load the tool.
+
+- Scan embedded template text with a position loop over explicit MatchData; Regexp.last_match inside to_enum(:scan) blocks is unreliable on TruffleRuby.
+
+- Whitelist the gem itself for license-eye (it is unresolvable from the registry before first release) and commit a release-mode Gemfile.lock with checksums and no local path remotes.
+
 ### Security
 
 [Unreleased]: https://gitlab.com/kettle-dev/kettle-deps-floor/-/compare/HEAD

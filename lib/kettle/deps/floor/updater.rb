@@ -125,10 +125,13 @@ module Kettle
         def placeholder_spans(source)
           return [] unless placeholder_pattern
 
-          source.to_enum(:scan, placeholder_pattern).map do
-            match = Regexp.last_match
-            [match.begin(0), match.end(0)]
+          spans = []
+          position = 0
+          while (match = placeholder_pattern.match(source, position))
+            spans << [match.begin(0), match.end(0)]
+            position = match.end(0)
           end
+          spans
         end
 
         def sanitize_placeholders(source, spans)
@@ -209,11 +212,15 @@ module Kettle
           return [] unless source.include?("%(")
 
           pattern = /%\(gem\s+"([A-Za-z0-9_.-]+)"\s*,\s*"(~> [^"]+)"\s*,\s*"(>= [^"]+)"/
-          source.to_enum(:scan, pattern).filter_map do
-            match = Regexp.last_match
+          # A position-loop with explicit MatchData: Regexp.last_match inside a
+          # to_enum(:scan) block is unreliable on TruffleRuby.
+          records = []
+          position = 0
+          while (match = pattern.match(source, position))
+            position = match.end(0)
             pessimistic_offset = source[0...match.begin(2)].bytesize - 1
             floor_offset = source[0...match.begin(3)].bytesize - 1
-            record_from_ranges(
+            record = record_from_ranges(
               match[1],
               "embedded_template_text",
               source,
@@ -224,7 +231,9 @@ module Kettle
               {start_offset: floor_offset, end_offset: floor_offset + match[3].bytesize + 2},
               [match[2], match[3]]
             )
+            records << record if record
           end
+          records
         end
 
         def record_from_nodes(name, nodes, source, relative_path, source_kind)
