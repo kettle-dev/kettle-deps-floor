@@ -105,6 +105,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,
   preserving comments and trailing commas during template updates.
 
+- Lower the kettle-dev gemspec floor to the released 3.1.24; 3.1.25 is not yet published, which made the gem unresolvable from a clean bundle.
+
 ### Security
 
 [Unreleased]: https://gitlab.com/kettle-dev/kettle-deps-floor/-/compare/HEAD
