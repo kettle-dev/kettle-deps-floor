@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
   spec.summary = "💎 AST-based dependency floor management for Ruby gems."
   spec.description = "💎 Discover and raise RubyGems dependency floors in gemspecs and configured template sources, with upgrade limits, dry-run reports, checks, and controlled commits."
   spec.homepage = "https://github.com/kettle-dev/kettle-deps-floor"
-  spec.licenses = ["MIT"]
+  spec.licenses = ["AGPL-3.0-only"]
   spec.required_ruby_version = ">= 3.2.0"
 
   # Linux distros often package gems and securely certify them independent
@@ -112,9 +112,6 @@ Gem::Specification.new do |spec|
   #
   #       Development dependencies that require strictly newer Ruby versions should be in a "gemfile",
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
-
-  # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.24")             # ruby >= 3.2.0
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0

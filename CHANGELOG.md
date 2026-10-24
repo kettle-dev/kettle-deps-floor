@@ -55,13 +55,15 @@ Please file a bug if you notice a violation of semantic versioning.
 - kettle-jem-template-20260801-001 - Generated README gem dashboard links now
   use ClickGems instead of BestGems.
 
-- [kc] kettle-jem/template: updated 119 project files:
+- [kc] kettle-jem/template: updated 120 project files:
   - code and tests (7)
   - configuration (3)
   - dependencies (44)
   - documentation (3)
-  - other (41)
+  - other (42)
   - workflows (21)
+
+- Relicense to AGPL-3.0-only (matching kettle-dev, whose runtime API this gem uses) before first release; the SkyWalking Eyes workflow and .licenserc.yaml are removed, as license-eye only supports permissive main licenses.
 
 ### Deprecated
 

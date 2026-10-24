@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 require "version_gem"
-require_relative "floor/version"
 require_relative "floor/registry_resolver"
 require_relative "floor/updater"
 require_relative "floor/cli"
+require_relative "floor/version"
 
 module Kettle
   module Deps

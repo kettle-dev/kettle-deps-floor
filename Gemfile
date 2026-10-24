@@ -23,6 +23,80 @@ gem "kettle-family", "~> 1.3", ">= 1.3.33"
 # Local workspace dependency wiring for *_local.gemfile overrides
 gem "nomono", "~> 1.1", ">= 1.1.15", require: false # ruby >= 3.2.0
 
+# Direct sibling dependencies (env-switched via KETTLE_DEV_DEV)
+direct_sibling_gems = %w[
+  kettle-dev
+  kettle-ndjson
+  kettle-gha-pins
+  kettle-rb
+  kettle-test
+]
+direct_sibling_dev = ENV.fetch("KETTLE_DEV_DEV", "")
+direct_sibling_local =
+  !direct_sibling_dev.empty? && !%w[false 0 no off].include?(direct_sibling_dev.downcase)
+direct_sibling_templating = ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?
+
+if direct_sibling_gems.any? &&
+    (direct_sibling_local ||
+      ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?)
+  direct_sibling_dev_was_set = ENV.key?("KETTLE_DEV_DEV")
+  direct_sibling_dev_original = ENV.fetch("KETTLE_DEV_DEV", nil)
+  # Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
+  # Bundler records that dependency during Gemfile evaluation, but it does not
+  # activate that exact version before the immediate `require "nomono/bundler"`.
+  nomono_activation_requirements = ["~> 1.1", ">= 1.1.15"]
+  nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
+  nomono_already_activated = Gem.loaded_specs["nomono"]
+  nomono_lockfile = File.expand_path("Gemfile.lock", __dir__)
+  nomono_locked_spec = nil
+  if File.file?(nomono_lockfile)
+    require "bundler"
+    nomono_locked_spec = Bundler::LockfileParser
+      .new(Bundler.read_file(nomono_lockfile))
+      .specs
+      .find { |spec| spec.name == "nomono" }
+  end
+  nomono_local_loader = if nomono_locked_spec && nomono_locked_spec.source.is_a?(Bundler::Source::Path)
+    File.expand_path(
+      File.join(nomono_locked_spec.source.path, "lib", "nomono", "bundler"),
+      File.dirname(nomono_lockfile)
+    )
+  end
+  if nomono_local_loader && File.file?("#{nomono_local_loader}.rb")
+    require nomono_local_loader
+  else
+    if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already_activated.version)
+      nomono_locked_installed = nomono_locked_spec &&
+        Gem::Specification.find_all_by_name("nomono").any? { |spec| spec.version == nomono_locked_spec.version }
+      nomono_locked = nomono_locked_spec &&
+        nomono_locked_installed &&
+        nomono_requirement.satisfied_by?(nomono_locked_spec.version)
+      nomono_activation_requirements = ["= #{nomono_locked_spec.version}"] if nomono_locked
+    end
+    Kernel.send(:gem, "nomono", *nomono_activation_requirements)
+    require "nomono/bundler"
+  end
+  begin
+    ENV["KETTLE_DEV_DEV"] = File.expand_path("..", __dir__) if direct_sibling_templating && !direct_sibling_local
+
+    eval_nomono_gems(
+      gems: direct_sibling_gems,
+      requirements: {"kettle-dev" => ["~> 3.1", ">= 3.1.24"], "kettle-ndjson" => ["~> 0.1", ">= 0.1.20"], "kettle-test" => ["~> 2.0", ">= 2.0.27"]},
+      prefix: "KETTLE_DEV",
+      path_env: "KETTLE_DEV_DEV",
+      root: ["src", "my", "kettle-dev"]
+    )
+  ensure
+    if direct_sibling_templating && !direct_sibling_local
+      if direct_sibling_dev_was_set
+        ENV["KETTLE_DEV_DEV"] = direct_sibling_dev_original
+      else
+        ENV.delete("KETTLE_DEV_DEV")
+      end
+    end
+  end
+end
+
 # Templating and the StructuredMerge family share this modular Gemfile.
 # kettle-jem needs StructuredMerge to template, and kettle-changelog needs it at
 # runtime (ast-crispr-markdown-markly -> markdown-merge -> tree_haver), so the

@@ -8,15 +8,6 @@
       ]
     }
   ],
-  "config: .licenserc.yaml\nmode: \"check\"": [
-    {
-      "file": ".github/workflows/license-eye.yml",
-      "lines": [
-        49,
-        62
-      ]
-    }
-  ],
   "exec_cmd: \"kettle-test\"\nrubygems: latest": [
     {
       "file": ".github/workflows/current.yml",
