@@ -38,6 +38,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - [kc] ndjson-event-stream: Add --events output using kettle-ndjson for versioned run_start, command_step, and summary records; keep human output on stderr and JSON reports mutually exclusive with event mode.
 
+- [kc] template-placeholder-tolerance: Add a placeholder_pattern option (CLI flag and config key) that treats matched template tokens as opaque equal-length constants during Prism parsing, so template sources like kettle-jem's {KJ|...} files remain floor-managed; records whose floors or names sit inside placeholder spans are never planned or edited.
+
 ### Changed
 
 - kettle-jem-template-20260716-002 - Gemspecs now ship fewer repository-only

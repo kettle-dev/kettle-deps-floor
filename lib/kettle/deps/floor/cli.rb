@@ -27,6 +27,7 @@ module Kettle
           sources = options.fetch(:sources).empty? ? Array(config["sources"] || defaults[:sources] || ["*.gemspec"]) : options.fetch(:sources)
           target_versions = config.fetch("target_versions", {}).merge(options.fetch(:target_versions))
           holds = config.fetch("holds", {})
+          placeholder_pattern = options[:placeholder_pattern] || config["placeholder_pattern"] || defaults[:placeholder_pattern]
           event_types = %w[run_start command_step summary]
           events = Kettle::Ndjson.event_stream(out, types: event_types.join(","), event_types: event_types) if options[:events]
           Kettle::Ndjson.emit_event(events, "run_start", command: "kettle-deps-floor", project_root: options.fetch(:project_root))
@@ -36,7 +37,8 @@ module Kettle
             target_versions: target_versions,
             upgrade: options.fetch(:upgrade),
             gem_names: options.fetch(:gem_names),
-            holds: holds
+            holds: holds,
+            placeholder_pattern: placeholder_pattern
           }
           planned = Updater.new(**updater_options).run
 
@@ -81,7 +83,8 @@ module Kettle
             commit: true,
             changelog: true,
             json: false,
-            events: false
+            events: false,
+            placeholder_pattern: nil
           }
           parser(defaults: defaults, options: options).parse!(argv, into: options)
           options[:project_root] = File.expand_path(argv.shift || options.fetch(:project_root))
@@ -110,6 +113,7 @@ module Kettle
             opts.on("--config PATH", "Read additional sources and holds from YAML.") { |value| options[:config_path] = File.expand_path(value) }
             opts.on("--json", "Print a machine-readable JSON report.") { options[:json] = true }
             opts.on("--events", "Emit compact NDJSON progress events to stdout; send the human report to stderr.") { options[:events] = true }
+            opts.on("--placeholder-pattern REGEXP", "Treat matches as opaque template tokens when parsing sources.") { |value| options[:placeholder_pattern] = value }
             opts.on("-h", "--help", "Print this help.") { options[:help] = true }
           end
         end

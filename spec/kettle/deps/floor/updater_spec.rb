@@ -229,6 +229,69 @@ RSpec.describe Kettle::Deps::Floor::Updater do
     expect(File.read(template)).to include('"~> 3.0", ">= 3.0.4"')
   end
 
+  it "parses sources with template placeholder tokens and updates only real floors" do
+    template = File.join(@root, "Gemfile.example")
+    original = <<~RUBY
+      # Include dependencies from {KJ|GEM_NAME}.gemspec
+      gemspec
+
+      {KJ|MAIN_GEMFILE_KETTLE_FAMILY_GEM}
+
+      gem "placeholder-named", {KJ|PLACEHOLDER_CONSTRAINT}
+      gem "{KJ|PLACEHOLDER_GEM}", {KJ|PLACEHOLDER_CONSTRAINT}
+      gem "token-resolver", "~> 2.0", ">= 2.0.4"
+    RUBY
+    File.write(template, original)
+
+    result = described_class.new(
+      project_root: @root,
+      sources: ["*.example"],
+      target_versions: {"token-resolver" => "2.0.14"},
+      placeholder_pattern: '\{KJ\|[^}]*\}',
+      write: true
+    ).run
+
+    expect(result.fetch(:updates)).to eq(1)
+    expect(result.fetch(:discovered_dependencies)).to contain_exactly("token-resolver")
+    expect(File.read(template)).to eq(original.sub('">= 2.0.4"', '">= 2.0.14"'))
+  end
+
+  it "parses placeholder tokens in constant and string positions" do
+    template = File.join(@root, "gem.gemspec.example")
+    original = <<~RUBY
+      Gem::Specification.new do |spec|
+        spec.name = "{KJ|GEM_NAME}"
+        spec.version = Module.new.tap { |mod| Kernel.load("lib/{KJ|GEM_NAME_PATH}/version.rb", mod) }::{KJ|NAMESPACE}::Version::VERSION
+        spec.files = [
+          *enumerate_package_files.call("exe"){KJ|GEMSPEC:PACKAGE_FILE_INCLUDES}{KJ|RUBY_STYLE:TRAILING_ARRAY_COMMA},
+          "--quiet"{KJ|RUBY_STYLE:TRAILING_ARRAY_COMMA}
+        ]
+        spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.15")
+      end
+    RUBY
+    File.write(template, original)
+
+    result = described_class.new(
+      project_root: @root,
+      sources: ["*.example"],
+      target_versions: {"version_gem" => "1.1.16"},
+      placeholder_pattern: '\{KJ\|[^}]*\}',
+      write: true
+    ).run
+
+    expect(result.fetch(:updates)).to eq(1)
+    expect(File.read(template)).to eq(original.sub('">= 1.1.15"', '">= 1.1.16"'))
+  end
+
+  it "still raises for unparseable sources when no placeholder pattern is configured" do
+    template = File.join(@root, "Gemfile.example")
+    File.write(template, "{KJ|MAIN_GEMFILE_KETTLE_FAMILY_GEM}\n")
+
+    expect do
+      described_class.new(project_root: @root, sources: ["*.example"]).run
+    end.to raise_error(Kettle::Deps::Floor::Error, /could not parse/)
+  end
+
   it "raises a floor without inventing a pessimistic constraint" do
     gemspec = File.join(@root, "example.gemspec")
     File.write(gemspec, %(spec.add_dependency("token-resolver", ">= 2.0.4")\n))

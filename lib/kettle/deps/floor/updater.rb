@@ -18,7 +18,8 @@ module Kettle
         VALID_UPGRADES = %w[major minor patch].freeze
 
         def initialize(project_root:, sources: ["*.gemspec"], resolver: RegistryResolver.new, target_versions: {},
-          upgrade: "major", write: false, check: false, gem_names: nil, holds: {}, registry_updates: true)
+          upgrade: "major", write: false, check: false, gem_names: nil, holds: {}, registry_updates: true,
+          placeholder_pattern: nil)
           @project_root = File.expand_path(project_root)
           @sources = Array(sources).map(&:to_s)
           @resolver = resolver
@@ -29,9 +30,10 @@ module Kettle
           @gem_names = Array(gem_names).map(&:to_s)
           @holds = holds.transform_keys(&:to_s)
           @registry_updates = registry_updates
+          @placeholder_pattern = placeholder_pattern && Regexp.new(placeholder_pattern.to_s)
         end
 
-        attr_reader :project_root, :sources, :resolver, :target_versions, :upgrade, :gem_names, :holds, :registry_updates
+        attr_reader :project_root, :sources, :resolver, :target_versions, :upgrade, :gem_names, :holds, :registry_updates, :placeholder_pattern
 
         def self.dependency_names(project_root:, sources:)
           new(project_root: project_root, sources: sources).dependencies
@@ -84,17 +86,72 @@ module Kettle
         def records_for_path(relative_path)
           path = File.join(project_root, relative_path)
           source = File.read(path)
-          parse_result = Kettle::Dev::VersionBump.parse_source(source, path)
+          spans = placeholder_spans(source)
+          parse_result = Kettle::Dev::VersionBump.parse_source(spans.empty? ? source : sanitize_placeholders(source, spans), path)
           nodes = Kettle::Dev::VersionBump.each_node(parse_result.value)
-          nodes.flat_map do |node|
+          records = nodes.flat_map do |node|
             [
               call_record(node, source, relative_path),
               assignment_record(node, source, relative_path),
               *Array(registry_records(node, source, relative_path))
             ].compact
           end + embedded_text_records(source, relative_path)
+          return records if spans.empty?
+
+          # Records whose floor or pessimistic requirement sits inside a
+          # substituted placeholder span are not editable (the placeholder owns
+          # those bytes), and names manufactured by the substitution sentinel
+          # are not real gems.
+          records.reject do |record|
+            sentinel_name?(record.fetch(:name)) ||
+              span_touched?(spans, record.fetch(:floor_range)) ||
+              (record[:pessimistic_range] && span_touched?(spans, record.fetch(:pessimistic_range)))
+          end
         rescue Kettle::Dev::Error => error
           raise Error, error.message
+        end
+
+        # Template placeholders such as kettle-jem's {KJ|TOKEN} are not valid
+        # Ruby in code positions, which makes the whole source unparseable.
+        # Each placeholder span is replaced with an equal-length constant token
+        # so Prism offsets still map 1:1 onto the original bytes; a constant
+        # parses in every position a placeholder occupies (statement, value,
+        # argument, `::` namespace segment), and it never becomes a StringNode,
+        # so substituted regions can never yield editable floor records.
+        # A placeholder glued to a preceding closing token (`)`, `"`, `}`)
+        # gets a `::`-prefixed constant instead, so e.g. `call("exe"){KJ|X}`
+        # parses as a constant path; inside string literals either shape is
+        # inert text.
+        def placeholder_spans(source)
+          return [] unless placeholder_pattern
+
+          source.to_enum(:scan, placeholder_pattern).map do
+            match = Regexp.last_match
+            [match.begin(0), match.end(0)]
+          end
+        end
+
+        def sanitize_placeholders(source, spans)
+          sanitized = source.dup
+          spans.each do |start_offset, end_offset|
+            length = end_offset - start_offset
+            previous = start_offset.zero? ? nil : sanitized[start_offset - 1]
+            token = if previous && %[) " }].include?(previous) && length >= 3
+              "::C" + ("x" * (length - 3))
+            else
+              "C" + ("x" * (length - 1))
+            end
+            sanitized[start_offset...end_offset] = token
+          end
+          sanitized
+        end
+
+        def sentinel_name?(name)
+          name.match?(/\ACx{4,}\z/)
+        end
+
+        def span_touched?(spans, range)
+          spans.any? { |start_offset, end_offset| range.fetch(:start_offset) < end_offset && start_offset < range.fetch(:end_offset) }
         end
 
         def call_record(node, source, relative_path)
