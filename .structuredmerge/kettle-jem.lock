@@ -222,7 +222,7 @@ template_state:
     MIT.md.example: 365fce2a82f9d258ada9a527accfd5754b406ee9cdd8f8ed86bbec64b8c42ab2
     PolyForm-Noncommercial-1.0.0.md.example: ffcca38841adb694b6f380647e15f17c446a4d1656fed51a1e2041d064c94cc8
     PolyForm-Small-Business-1.0.0.md.example: 2f81e317d36f83a199c9fa10bcb250775fd90510303eaeb15aac2d8f0c1fc2d6
-    README.md.example: f93fc51e5b329f5df885479ecc008c54a9c118704bf3808d982ad89983e66ae5
+    README.md.example: 4ea46419d3948bb85f0d290e736ff6ec5575e32dd588903037e75ad6b4932ca6
     REEK: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
     RUBOCOP.md.example: d99871a0e4c1d323c92e7febf328f062bb4722069b2abfd0a83bf7daa8dcbf8c
     Rakefile.example: e00eb9a697a2acda0b15506f106a90a9da78471bbe0b40363efb3f98edfa43aa
@@ -748,8 +748,8 @@ files:
   README.md:
     recipe: template_source_application_README_md
     action: write
-    dest_sha256: ca2d374a8105a238a4991be274471aac56cd0d7a06bc082de82137f03858be77
-    input_fingerprint: e7c2b1be099868f91e2bf33938e91fb3dd09efcf146de8e116ce192c3037ad52
+    dest_sha256: 525ef28683733273db4deefe4eb042cbc901549361d2048bf8d98bbac4a98123
+    input_fingerprint: ee385e80849f82060aa817a72bd73baaec0c7dada30a427e26ab3ce39e2a20a5
     template_sources:
     - README.md.example
   REEK:
