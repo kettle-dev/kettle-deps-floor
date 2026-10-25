@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.1.0] - 2026-10-24
+
+- TAG: [v0.1.0][0.1.0t]
+- COVERAGE: 99.46% -- 368/370 lines in 5 files
+- BRANCH COVERAGE: 80.98% -- 132/163 branches in 5 files
+- 46.15% documented
+
+### Added
+
 - kettle-jem-template-20260720-005 - README Support & Community links now
   include RubyForum.
 - kettle-jem-template-20260726-001 - Projects now include YARD lint
@@ -68,10 +87,6 @@ Please file a bug if you notice a violation of semantic versioning.
 - [kc] kettle-jem/prepare: updated 3 project files:
   - dependencies (3)
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - kettle-jem-template-20260720-003 - StructuredMerge Git diff driver config now
@@ -118,6 +133,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Whitelist the gem itself for license-eye (it is unresolvable from the registry before first release) and commit a release-mode Gemfile.lock with checksums and no local path remotes.
 
-### Security
-
-[Unreleased]: https://gitlab.com/kettle-dev/kettle-deps-floor/-/compare/HEAD
+[Unreleased]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/kettle-dev/kettle-deps-floor/compare/93a58879cd306c9011fb0e1bc6f0bce548101117...v0.1.0
+[0.1.0t]: https://github.com/kettle-dev/kettle-deps-floor/releases/tag/v0.1.0

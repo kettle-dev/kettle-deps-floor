@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.45
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+
+  <link rel="stylesheet" href="css/common.css" type="text/css">
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="https://github.com/kettle-dev"><img alt="kettle-dev Logo by GitHub" src="https://github.com/kettle-dev.png?size=192" width="14%" align="right"></a></p>
+
+<h1 id="-kettledepsfloor">💎 Kettle::Deps::Floor</h1>
+
+<p><a href="https://clickgems.clickhouse.com/dashboard/kettle-deps-floor"><img src="https://img.shields.io/gem/v/kettle-deps-floor.svg" alt="Version"></a> <a href="https://www.rubyforum.org/tag/kettle-dev"><img src="https://img.shields.io/discourse/topics?server=https%3A%2F%2Fwww.rubyforum.org&amp;style=flat&amp;logo=discourse&amp;label=Ruby%20Users%20Forum" alt="Ruby Users Forum"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/releases"><img src="https://img.shields.io/github/tag/kettle-dev/kettle-deps-floor.svg" alt="GitHub tag (latest SemVer)"></a> <a href="LICENSE.md"><img src="https://img.shields.io/badge/License-AGPL--3.0--only-259D6C.svg" alt="License: AGPL-3.0-only"></a> <a href="https://clickgems.clickhouse.com/dashboard/kettle-deps-floor"><img src="https://img.shields.io/gem/dt/kettle-deps-floor.svg" alt="Total downloads"></a> <a href="https://codecov.io/gh/kettle-dev/kettle-deps-floor"><img src="https://codecov.io/gh/kettle-dev/kettle-deps-floor/graph/badge.svg" alt="CodeCov Test Coverage"></a> <a href="https://coveralls.io/github/kettle-dev/kettle-deps-floor?branch=main"><img src="https://coveralls.io/repos/github/kettle-dev/kettle-deps-floor/badge.svg?branch=main" alt="Coveralls Test Coverage"></a> <a href="https://qlty.sh/gh/kettle-dev/projects/kettle-deps-floor/metrics/code?sort=coverageRating"><img src="https://qlty.sh/gh/kettle-dev/projects/kettle-deps-floor/coverage.svg" alt="QLTY Test Coverage"></a> <a href="https://qlty.sh/gh/kettle-dev/projects/kettle-deps-floor"><img src="https://qlty.sh/gh/kettle-dev/projects/kettle-deps-floor/maintainability.svg" alt="QLTY Maintainability"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/heads.yml"><img src="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/heads.yml/badge.svg" alt="CI Heads"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/dep-heads.yml"><img src="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/dep-heads.yml/badge.svg" alt="CI Runtime Dependencies @ HEAD"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/current.yml"><img src="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/current.yml/badge.svg" alt="CI Current"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/truffle.yml"><img src="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/truffle.yml/badge.svg" alt="CI Truffle Ruby"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/jruby.yml"><img src="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/jruby.yml/badge.svg" alt="CI JRuby"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/locked_deps.yml"><img src="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/locked_deps.yml/badge.svg" alt="Deps Locked"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/unlocked_deps.yml"><img src="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/unlocked_deps.yml/badge.svg" alt="Deps Unlocked"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/coverage.yml"><img src="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/coverage.yml/badge.svg" alt="CI Test Coverage"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/style.yml"><img src="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/style.yml/badge.svg" alt="CI Style"></a></p>
+
+<p><code>if ci_badges.map(&amp;:color).detect { it != "green"}</code> ☝️ <a href="https://discord.gg/3qme4XHNKN">let me know on Discord</a> or <a href="https://www.rubyforum.org/tag/kettle-dev">RubyForum</a>, as I may have missed the notification.</p>
+
+<hr>
+
+<p><code>if ci_badges.map(&amp;:color).all? { it == "green"}</code> 👇️ send money so I can do more of this. FLOSS maintenance is now my full-time job.</p>
+
+<p><a href="https://opencollective.com/kettle-dev#backer"><img src="https://opencollective.com/kettle-dev/backers/badge.svg?style=flat" alt="OpenCollective Backers"></a> <a href="https://opencollective.com/kettle-dev#sponsor"><img src="https://opencollective.com/kettle-dev/sponsors/badge.svg?style=flat" alt="OpenCollective Sponsors"></a> <a href="https://github.com/sponsors/pboling"><img src="https://img.shields.io/badge/Sponsor_Me!-pboling.svg?style=social&amp;logo=github" alt="Sponsor Me on Github"></a> <a href="https://liberapay.com/pboling/donate"><img src="https://img.shields.io/liberapay/goal/pboling.svg?logo=liberapay&amp;color=a51611&amp;style=flat" alt="Liberapay Goal Progress"></a> <a href="https://www.paypal.com/paypalme/peterboling"><img src="https://img.shields.io/badge/donate-paypal-a51611.svg?style=flat&amp;logo=paypal" alt="Donate on PayPal"></a> <a href="https://www.buymeacoffee.com/pboling"><img src="https://img.shields.io/badge/buy_me_a_coffee-%E2%9C%93-a51611.svg?style=flat" alt="Buy me a coffee"></a> <a href="https://ko-fi.com/pboling"><img src="https://img.shields.io/badge/ko--fi-%E2%9C%93-a51611.svg?style=flat" alt="Donate at ko-fi.com"></a></p>
+
+<details>
+  <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
+
+  <p>I’ve summarized my thoughts in <a href="https://dev.to/galtzo/hostile-takeover-of-rubygems-my-thoughts-5hlo">this blog post</a>.</p>
+
+</details>
+
+<h2 id="-synopsis--">🌻 Synopsis <a href="https://discord.gg/3qme4XHNKN"><img alt="Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px.svg" width="8%" align="right"></a> <a href="https://ruby-toolbox.com"><img alt="ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5" src="https://logos.galtzo.com/assets/images/ruby-lang/avatar-128px.svg" width="8%" align="right"></a>
+</h2>
+
+<p><code>kettle-deps-floor</code> discovers the minimum dependency versions already supported by your Ruby gems and raises their declared floors when newer versions are safe to use. It can inspect gemspecs and configured template sources, with upgrade limits, dry-run reports, checks, and controlled commits.</p>
+
+<h2 id="-info-you-can-shake-a-stick-at">💡 Info you can shake a stick at</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tokens to Remember</th>
+      <th>
+<a href="https://clickgems.clickhouse.com/dashboard/kettle-deps-floor"><img src="https://img.shields.io/badge/name-kettle--deps--floor-3C2D2D.svg?style=square&amp;logo=rubygems&amp;logoColor=red" alt="Gem name"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor"><img src="https://img.shields.io/badge/namespace-Kettle::Deps::Floor-3C2D2D.svg?style=square&amp;logo=ruby&amp;logoColor=white" alt="Gem namespace"></a>
+</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Works with JRuby</td>
+      <td>
+<a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/jruby-10.0.yml"><img src="https://img.shields.io/badge/JRuby-10.0-FBE742?style=for-the-badge&amp;logo=ruby&amp;logoColor=red" alt="JRuby 10.0 Compat"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/jruby.yml"><img src="https://img.shields.io/badge/JRuby-current-FBE742?style=for-the-badge&amp;logo=ruby&amp;logoColor=green" alt="JRuby current Compat"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/heads.yml"><img src="https://img.shields.io/badge/JRuby-HEAD-FBE742?style=for-the-badge&amp;logo=ruby&amp;logoColor=blue" alt="JRuby HEAD Compat"></a>
+</td>
+    </tr>
+    <tr>
+      <td>Works with Truffle Ruby</td>
+      <td>
+<a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/truffleruby-24.2.yml"><img src="https://img.shields.io/badge/Truffle_Ruby-24.2-34BCB1?style=for-the-badge&amp;logo=ruby&amp;logoColor=pink" alt="Truffle Ruby 24.2 Compat"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/truffleruby-25.0.yml"><img src="https://img.shields.io/badge/Truffle_Ruby-25.0-34BCB1?style=for-the-badge&amp;logo=ruby&amp;logoColor=pink" alt="Truffle Ruby 25.0 Compat"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/truffleruby-33.0.yml"><img src="https://img.shields.io/badge/Truffle_Ruby-33.0-34BCB1?style=for-the-badge&amp;logo=ruby&amp;logoColor=pink" alt="Truffle Ruby 33.0 Compat"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/truffle.yml"><img src="https://img.shields.io/badge/Truffle_Ruby-current-34BCB1?style=for-the-badge&amp;logo=ruby&amp;logoColor=green" alt="Truffle Ruby current Compat"></a>
+</td>
+    </tr>
+    <tr>
+      <td>Works with MRI Ruby 4</td>
+      <td>
+<a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/current.yml"><img src="https://img.shields.io/badge/Ruby-current-CC342D?style=for-the-badge&amp;logo=ruby&amp;logoColor=green" alt="Ruby current Compat"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/heads.yml"><img src="https://img.shields.io/badge/Ruby-HEAD-CC342D?style=for-the-badge&amp;logo=ruby&amp;logoColor=blue" alt="Ruby HEAD Compat"></a>
+</td>
+    </tr>
+    <tr>
+      <td>Works with MRI Ruby 3</td>
+      <td>
+<a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/ruby-3.2.yml"><img src="https://img.shields.io/badge/Ruby-3.2-CC342D?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 3.2 Compat"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/ruby-3.3.yml"><img src="https://img.shields.io/badge/Ruby-3.3-CC342D?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 3.3 Compat"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/actions/workflows/ruby-3.4.yml"><img src="https://img.shields.io/badge/Ruby-3.4-CC342D?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 3.4 Compat"></a>
+</td>
+    </tr>
+    <tr>
+      <td>Support &amp; Community</td>
+      <td>
+<a href="https://app.daily.dev/squads/rubyfriends"><img src="https://img.shields.io/badge/daily.dev-%F0%9F%92%8E_Ruby_Friends-0A0A0A?style=for-the-badge&amp;logo=dailydotdev&amp;logoColor=white" alt="Join Me on Daily.dev's RubyFriends"></a> <a href="https://www.rubyforum.org/tag/kettle-dev"><img src="https://img.shields.io/discourse/topics?server=https%3A%2F%2Fwww.rubyforum.org&amp;style=for-the-badge&amp;logo=discourse&amp;label=Ruby%20Users%20Forum" alt="Get help from RubyForum"></a> <a href="https://discord.gg/3qme4XHNKN"><img src="https://img.shields.io/discord/1373797679469170758?style=for-the-badge&amp;logo=discord" alt="Live Chat on Discord"></a> <a href="https://www.upwork.com/freelancers/~014942e9b056abdf86?mp_source=share"><img src="https://img.shields.io/badge/UpWork-13544E?style=for-the-badge&amp;logo=Upwork&amp;logoColor=white" alt="Get help from me on Upwork"></a> <a href="https://www.codementor.io/peterboling?utm_source=github&amp;utm_medium=button&amp;utm_term=peterboling&amp;utm_campaign=github"><img src="https://img.shields.io/badge/CodeMentor-Get_Help-1abc9c?style=for-the-badge&amp;logo=CodeMentor&amp;logoColor=white" alt="Get help from me on Codementor"></a>
+</td>
+    </tr>
+    <tr>
+      <td>Source</td>
+      <td>
+<a href="https://gitlab.com/kettle-dev/kettle-deps-floor"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/kettle-dev/kettle-deps-floor"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=GitHub&amp;logoColor=green" alt="Source on GitHub.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.370-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
+</td>
+    </tr>
+    <tr>
+      <td>Documentation</td>
+      <td>
+<a href="http://rubydoc.info/gems/kettle-deps-floor"><img src="https://img.shields.io/badge/RubyDoc-Current_Release-943CD2?style=for-the-badge&amp;logo=readthedocs&amp;logoColor=white" alt="Current release on RubyDoc.info"></a> <a href="https://kettle-deps-floor.galtzo.com"><img src="https://img.shields.io/badge/YARD_on_Galtzo.com-HEAD-943CD2?style=for-the-badge&amp;logo=readthedocs&amp;logoColor=white" alt="YARD on Galtzo.com"></a> <a href="http://www.railsbling.com/tags/kettle-deps-floor"><img src="https://img.shields.io/badge/blog-railsbling-0093D0.svg?style=for-the-badge&amp;logo=rubyonrails&amp;logoColor=orange" alt="Maintainer Blog"></a> <a href="https://gitlab.com/kettle-dev/kettle-deps-floor/-/wikis/home"><img src="https://img.shields.io/badge/wiki-gitlab-943CD2.svg?style=for-the-badge&amp;logo=gitlab&amp;logoColor=white" alt="GitLab Wiki"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/wiki"><img src="https://img.shields.io/badge/wiki-github-943CD2.svg?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="GitHub Wiki"></a>
+</td>
+    </tr>
+    <tr>
+      <td>Compliance</td>
+      <td>
+<a href="LICENSE.md"><img src="https://img.shields.io/badge/License-AGPL--3.0--only-259D6C.svg" alt="License: AGPL-3.0-only"></a> <a href="https://www.apache.org/legal/resolved.html#category-x"><img src="https://img.shields.io/badge/Apache_Incompatible:_Category_X-%E2%9C%97-C0392B.svg?style=flat&amp;logo=Apache" alt="Apache license compatibility: Category X"></a> <a href="https://www.ilo.org/declaration/lang--en/index.htm"><img src="https://img.shields.io/badge/ILO_Fundamental_Principles-%E2%9C%93-259D6C.svg?style=flat" alt="📄ilo-declaration-img"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/blob/main/SECURITY.md"><img src="https://img.shields.io/badge/security-policy-259D6C.svg?style=flat" alt="Security Policy"></a> <a href="https://github.com/kettle-dev/kettle-deps-floor/blob/main/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor_Covenant-2.1-259D6C.svg" alt="Contributor Covenant 2.1"></a> <a href="https://semver.org/spec/v2.0.0.html"><img src="https://img.shields.io/badge/semver-2.0.0-259D6C.svg?style=flat" alt="SemVer 2.0.0"></a>
+</td>
+    </tr>
+    <tr>
+      <td>Style</td>
+      <td>
+<a href="https://github.com/rubocop-lts/rubocop-lts"><img src="https://img.shields.io/badge/code_style_&amp;_linting-rubocop--lts-34495e.svg?plastic&amp;logo=ruby&amp;logoColor=white" alt="Enforced Code Style Linter"></a> <a href="https://keepachangelog.com/en/1.0.0/"><img src="https://img.shields.io/badge/keep--a--changelog-1.0.0-34495e.svg?style=flat" alt="Keep-A-Changelog 1.0.0"></a> <a href="https://gitmoji.dev"><img src="https://img.shields.io/badge/gitmoji_commits-%20%F0%9F%98%9C%20%F0%9F%98%8D-34495e.svg?style=flat-square" alt="Gitmoji Commits"></a> <a href="https://github.com/appraisal-rb/appraisal2"><img src="https://img.shields.io/badge/appraised_by-appraisal2-34495e.svg?plastic&amp;logo=ruby&amp;logoColor=white" alt="Compatibility appraised by: appraisal2"></a>
+</td>
+    </tr>
+    <tr>
+      <td>Maintainer 🎖️</td>
+      <td>
+<a href="http://www.linkedin.com/in/peterboling"><img src="https://img.shields.io/badge/LinkedIn-Profile-0B66C2?style=flat&amp;logo=newjapanprowrestling" alt="Follow Me on LinkedIn"></a> <a href="https://ruby.social/@galtzo"><img src="https://img.shields.io/mastodon/follow/109447111526622197?domain=https://ruby.social&amp;style=flat&amp;logo=mastodon&amp;label=Ruby%20@galtzo" alt="Follow Me on Ruby.Social"></a> <a href="https://bsky.app/profile/galtzo.com"><img src="https://img.shields.io/badge/@galtzo.com-0285FF?style=flat&amp;logo=bluesky&amp;logoColor=white" alt="Follow Me on Bluesky"></a> <a href="http://www.railsbling.com/contact"><img src="https://img.shields.io/badge/Contact-Maintainer-0093D0.svg?style=flat&amp;logo=rubyonrails&amp;logoColor=red" alt="Contact Maintainer"></a> <a href="https://dev.to/galtzo"><img src="https://img.shields.io/badge/dev.to-0A0A0A?style=flat&amp;logo=devdotto&amp;logoColor=white" alt="My technical writing"></a>
+</td>
+    </tr>
+    <tr>
+      <td>
+<code>...</code> 💖</td>
+      <td>
+<a href="https://wellfound.com/u/peter-boling"><img src="https://img.shields.io/badge/peter--boling-orange?style=flat&amp;logo=wellfound" alt="Find Me on WellFound:"></a> <a href="https://www.crunchbase.com/person/peter-boling"><img src="https://img.shields.io/badge/peter--boling-purple?style=flat&amp;logo=crunchbase" alt="Find Me on CrunchBase"></a> <a href="https://linktr.ee/galtzo"><img src="https://img.shields.io/badge/galtzo-purple?style=flat&amp;logo=linktree" alt="My LinkTree"></a> <a href="https://about.me/peter.boling"><img src="https://img.shields.io/badge/about.me-0A0A0A?style=flat&amp;logo=aboutme&amp;logoColor=white" alt="More About Me"></a> <a href="https://codeberg.org/pboling">🧊</a> <a href="https://github.org/pboling">🐙</a> <a href="https://sr.ht/~galtzo/">🛖</a> <a href="https://gitlab.com/pboling">🧪</a>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="compatibility">Compatibility</h3>
+
+<p>Compatible with MRI Ruby 3.2.0+, JRuby, and TruffleRuby.<br>
+CI workflows and Appraisals are generated for MRI Ruby 3.2.0+.<br>
+The current MRI CI lane runs on Linux and macOS.<br>
+This test floor is configured by <code>ruby.test_minimum</code> in <code>.kettle-jem.yml</code> and<br>
+may be higher than the gem’s runtime compatibility floor when legacy Rubies are<br>
+not practical for the current toolchain.</p>
+
+<p><a href="https://github.com/kettle-dev"><img alt="kettle-dev Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/kettle-dev/avatar-128px.svg" width="14%" align="right"></a></p>
+
+<p>The <em>amazing</em> test matrix is powered by the kettle-dev stack.</p>
+
+<details>
+  <summary>How kettle-dev manages complexity in tests</summary>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Gem</th>
+        <th>Source</th>
+        <th>Role</th>
+        <th>Total downloads</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/appraisal2">appraisal2</a></td>
+        <td><a href="https://github.com/appraisal-rb/appraisal2">GitHub</a></td>
+        <td>multi-dependency Appraisal matrix generation</td>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/appraisal2"><img src="https://img.shields.io/gem/dt/appraisal2.svg?style=flat-square" alt="Total downloads for appraisal2"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/appraisal2-rubocop">appraisal2-rubocop</a></td>
+        <td><a href="https://github.com/appraisal-rb/appraisal2-rubocop">GitHub</a></td>
+        <td>RuboCop Appraisal generator integration</td>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/appraisal2-rubocop"><img src="https://img.shields.io/gem/dt/appraisal2-rubocop.svg?style=flat-square" alt="Total downloads for appraisal2-rubocop"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/kettle-dev">kettle-dev</a></td>
+        <td><a href="https://github.com/kettle-dev/kettle-dev">GitHub</a></td>
+        <td>development, release, and CI workflow tooling</td>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/kettle-dev"><img src="https://img.shields.io/gem/dt/kettle-dev.svg?style=flat-square" alt="Total downloads for kettle-dev"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/kettle-jem">kettle-jem</a></td>
+        <td><a href="https://github.com/kettle-dev/kettle-jem">GitHub</a></td>
+        <td>Appraisals &amp; CI workflow templates</td>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/kettle-jem"><img src="https://img.shields.io/gem/dt/kettle-jem.svg?style=flat-square" alt="Total downloads for kettle-jem"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/kettle-soup-cover">kettle-soup-cover</a></td>
+        <td><a href="https://github.com/kettle-dev/kettle-soup-cover">GitHub</a></td>
+        <td>SimpleCov coverage policy and reporting</td>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/kettle-soup-cover"><img src="https://img.shields.io/gem/dt/kettle-soup-cover.svg?style=flat-square" alt="Total downloads for kettle-soup-cover"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/kettle-test">kettle-test</a></td>
+        <td><a href="https://github.com/kettle-dev/kettle-test">GitHub</a></td>
+        <td>standard test runner and coverage harness</td>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/kettle-test"><img src="https://img.shields.io/gem/dt/kettle-test.svg?style=flat-square" alt="Total downloads for kettle-test"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/rubocop-lts">rubocop-lts</a></td>
+        <td><a href="https://github.com/rubocop-lts/rubocop-lts">GitHub</a></td>
+        <td>Ruby-version-aware linting</td>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/rubocop-lts"><img src="https://img.shields.io/gem/dt/rubocop-lts.svg?style=flat-square" alt="Total downloads for rubocop-lts"></a></td>
+      </tr>
+      <tr>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/turbo_tests2">turbo_tests2</a></td>
+        <td><a href="https://github.com/galtzo-floss/turbo_tests2">GitHub</a></td>
+        <td>parallel test execution</td>
+        <td><a href="https://clickgems.clickhouse.com/dashboard/turbo_tests2"><img src="https://img.shields.io/gem/dt/turbo_tests2.svg?style=flat-square" alt="Total downloads for turbo_tests2"></a></td>
+      </tr>
+    </tbody>
+  </table>
+
+</details>
+
+<h3 id="federated-dvcs">Federated DVCS</h3>
+
+<details>
+  <summary>Find this repo on federated forges (Coming soon!)</summary>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Federated <a href="https://railsbling.com/posts/dvcs/put_the_d_in_dvcs/">DVCS</a> Repository</th>
+        <th>Status</th>
+        <th>Issues</th>
+        <th>PRs</th>
+        <th>Wiki</th>
+        <th>CI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🧪 <a href="https://gitlab.com/kettle-dev/kettle-deps-floor">kettle-dev/kettle-deps-floor on GitLab</a>
+</td>
+        <td>The Truth</td>
+        <td><a href="https://gitlab.com/kettle-dev/kettle-deps-floor/-/issues">💚</a></td>
+        <td><a href="https://gitlab.com/kettle-dev/kettle-deps-floor/-/merge_requests">💚</a></td>
+        <td><a href="https://gitlab.com/kettle-dev/kettle-deps-floor/-/wikis/home">💚</a></td>
+        <td>🐭 Tiny Matrix</td>
+      </tr>
+      <tr>
+        <td>🧊 <a href="https://codeberg.org/kettle-dev/kettle-deps-floor">kettle-dev/kettle-deps-floor on CodeBerg</a>
+</td>
+        <td>An Ethical Mirror (<a href="https://donate.codeberg.org/">Donate</a>)</td>
+        <td><a href="https://codeberg.org/kettle-dev/kettle-deps-floor/issues">💚</a></td>
+        <td><a href="https://codeberg.org/kettle-dev/kettle-deps-floor/pulls">💚</a></td>
+        <td>➖</td>
+        <td>⭕️ No Matrix</td>
+      </tr>
+      <tr>
+        <td>🐙 <a href="https://github.com/kettle-dev/kettle-deps-floor">kettle-dev/kettle-deps-floor on GitHub</a>
+</td>
+        <td>Another Mirror</td>
+        <td><a href="https://github.com/kettle-dev/kettle-deps-floor/issues">💚</a></td>
+        <td><a href="https://github.com/kettle-dev/kettle-deps-floor/pulls">💚</a></td>
+        <td><a href="https://github.com/kettle-dev/kettle-deps-floor/wiki">💚</a></td>
+        <td>💯 Full Matrix</td>
+      </tr>
+    </tbody>
+  </table>
+
+</details>
+
+<h3 id="enterprise-support">Enterprise Support</h3>
+
+<p>For enterprise support from the maintainer, use <a href="https://www.upwork.com/freelancers/~014942e9b056abdf86?mp_source=share">Upwork</a> or <a href="https://www.codementor.io/peterboling?utm_source=github&amp;utm_medium=button&amp;utm_term=peterboling&amp;utm_campaign=github">CodeMentor</a>.</p>
+
+<p>Other support channels:</p>
+
+<ul>
+  <li><a href="https://www.rubyforum.org/tag/kettle-dev"><img src="https://img.shields.io/discourse/topics?server=https%3A%2F%2Fwww.rubyforum.org&amp;style=for-the-badge&amp;logo=discourse&amp;label=Ruby%20Users%20Forum" alt="Ruby Users Forum"></a></li>
+  <li><a href="https://discord.gg/3qme4XHNKN"><img src="https://img.shields.io/discord/1373797679469170758?style=for-the-badge&amp;logo=discord" alt="Live Chat on Discord"></a></li>
+</ul>
+
+<h2 id="-installation">✨ Installation</h2>
+
+<p>Install the gem and add to the application’s Gemfile by executing:</p>
+
+<pre class="code language-console"><code class="language-console">bundle add kettle-deps-floor
+</code></pre>
+
+<p>If bundler is not being used to manage dependencies, install the gem by executing:</p>
+
+<pre class="code language-console"><code class="language-console">gem install kettle-deps-floor
+</code></pre>
+
+<h2 id="️-configuration">⚙️ Configuration</h2>
+
+<p>By default, <code>kettle-deps-floor</code> scans <code>*.gemspec</code> in the selected project root<br>
+and queries RubyGems for newer compatible versions. A project may add<br>
+<code>.kettle-deps-floor.yml</code> to configure source globs, explicit family-release<br>
+versions, and dependency holds:</p>
+
+<pre class="code language-yaml"><code class="language-yaml">sources:
+  - &quot;*.gemspec&quot;
+  - &quot;Gemfile&quot;
+target_versions:
+  token-resolver: &quot;2.0.14&quot;
+holds:
+  rubocop-minitest: &quot;Wait until the standard gem range permits this release.&quot;
+</code></pre>
+
+<p><code>target_versions</code> is useful for sibling-family lockstep releases. Holds suppress<br>
+a named dependency from automatic updates. Use quoted version strings.</p>
+
+<h2 id="-basic-usage">🔧 Basic Usage</h2>
+
+<p>Preview compatible dependency-floor updates without changing files:</p>
+
+<pre class="code language-console"><code class="language-console">bundle exec kettle-deps-floor --upgrade patch
+</code></pre>
+
+<p>Check a family member against an explicit just-released sibling version:</p>
+
+<pre class="code language-console"><code class="language-console">bundle exec kettle-deps-floor --check --target token-resolver=2.0.14
+</code></pre>
+
+<p>Apply updates, add a keyed Unreleased changelog entry, and commit only the<br>
+changed source files (the default write behavior):</p>
+
+<pre class="code language-console"><code class="language-console">bundle exec kettle-deps-floor --write --upgrade minor
+</code></pre>
+
+<p>Use <code>--no-commit</code> to write without committing, <code>--no-changelog</code> to omit the<br>
+changelog update, <code>--source GLOB</code> to add or override scanned Ruby source paths,<br>
+and <code>--only GEM[,GEM...]</code> to limit the update set. The <code>major</code>, <code>minor</code>, and<br>
+<code>patch</code> limits constrain registry candidates; existing non-floor requirements<br>
+are still checked before a target is accepted. Changes use Prism AST source<br>
+locations rather than text substitutions.</p>
+
+<p>Use <code>--events</code> to stream compact NDJSON progress events to stdout; the normal<br>
+human summary moves to stderr so the stream remains machine-readable. Events<br>
+use kettle-ndjson’s versioned <code>run_start</code>, <code>command_step</code>, and <code>summary</code> schema.</p>
+
+<h2 id="-security">🔐 Security</h2>
+
+<p>See <a href="https://github.com/kettle-dev/kettle-deps-floor/blob/main/SECURITY.md">SECURITY.md</a>.</p>
+
+<h2 id="-contributing">🤝 Contributing</h2>
+
+<p>If you need some ideas of where to help, you could work on adding more code coverage,<br>
+check <a href="https://github.com/kettle-dev/kettle-deps-floor/issues">issues</a> or <a href="https://github.com/kettle-dev/kettle-deps-floor/pulls">PRs</a>, or use the gem and think about how it could be better.</p>
+
+<p>We <a href="https://keepachangelog.com/en/1.0.0/"><img src="https://img.shields.io/badge/keep--a--changelog-1.0.0-34495e.svg?style=flat" alt="Keep A Changelog"></a> so if you make changes, remember to update it.</p>
+
+<p>See <a href="https://github.com/kettle-dev/kettle-deps-floor/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for more detailed instructions.</p>
+
+<h3 id="-release-instructions">🚀 Release Instructions</h3>
+
+<p>See <a href="https://github.com/kettle-dev/kettle-deps-floor/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+
+<h3 id="code-coverage">Code Coverage</h3>
+
+<details>
+  <summary>Coverage service badges</summary>
+
+  <p><a href="https://codecov.io/gh/kettle-dev/kettle-deps-floor"><img src="https://codecov.io/gh/kettle-dev/kettle-deps-floor/graph/badge.svg" alt="Coverage Graph"></a></p>
+
+  <p><a href="https://coveralls.io/github/kettle-dev/kettle-deps-floor?branch=main"><img src="https://coveralls.io/repos/github/kettle-dev/kettle-deps-floor/badge.svg?branch=main" alt="Coveralls Test Coverage"></a></p>
+
+  <p><a href="https://qlty.sh/gh/kettle-dev/projects/kettle-deps-floor/metrics/code?sort=coverageRating"><img src="https://qlty.sh/gh/kettle-dev/projects/kettle-deps-floor/coverage.svg" alt="QLTY Test Coverage"></a></p>
+
+</details>
+
+<h3 id="-code-of-conduct">🪇 Code of Conduct</h3>
+
+<p>Everyone interacting with this project’s codebases, issue trackers,<br>
+chat rooms and mailing lists agrees to follow the <a href="https://github.com/kettle-dev/kettle-deps-floor/blob/main/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/Contributor_Covenant-2.1-259D6C.svg" alt="Contributor Covenant 2.1"></a>.</p>
+
+<h2 id="-contributors">🌈 Contributors</h2>
+
+<p><a href="https://github.com/kettle-dev/kettle-deps-floor/graphs/contributors"><img src="https://contrib.rocks/image?repo=kettle-dev/kettle-deps-floor" alt="Contributors"></a></p>
+
+<p>Made with <a href="https://contrib.rocks">contributors-img</a>.</p>
+
+<p>Also see GitLab Contributors: <a href="https://gitlab.com/kettle-dev/kettle-deps-floor/-/graphs/main">https://gitlab.com/kettle-dev/kettle-deps-floor/-/graphs/main</a></p>
+
+<h2 id="-versioning">📌 Versioning</h2>
+
+<p>This library follows <a href="https://semver.org/spec/v2.0.0.html"><img src="https://img.shields.io/badge/semver-2.0.0-259D6C.svg?style=flat" alt="Semantic Versioning 2.0.0"></a> for its public API where practical.<br>
+For most applications, prefer the <a href="http://guides.rubygems.org/patterns/#pessimistic-version-constraint">Pessimistic Version Constraint</a> with two digits of precision.</p>
+
+<p>For example:</p>
+
+<pre class="code language-ruby"><code class="language-ruby">spec.add_dependency(&quot;kettle-deps-floor&quot;, &quot;~&gt; 0.0&quot;)
+</code></pre>
+
+<details>
+  <summary>📌 Is "Platform Support" part of the public API? More details inside.</summary>
+
+  <p>Dropping support for a platform can be a breaking change for affected users.
+If a release changes supported platforms, it should be called out clearly in the changelog and versioned with that impact in mind.</p>
+
+  <p>To get a better understanding of how SemVer is intended to work over a project’s lifetime,
+read this article from the creator of SemVer:</p>
+
+  <ul>
+    <li><a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">“Major Version Numbers are Not Sacred”</a></li>
+  </ul>
+
+</details>
+
+<p>See <a href="https://github.com/kettle-dev/kettle-deps-floor/blob/main/CHANGELOG.md">CHANGELOG.md</a> for a list of releases.</p>
+
+<h2 id="-license">📄 License</h2>
+
+<p>The gem is available under the following license: <a href="https://github.com/kettle-dev/kettle-deps-floor/blob/main/AGPL-3.0-only.md">AGPL-3.0-only</a>.<br>
+See <a href="LICENSE.md">LICENSE.md</a> for details.</p>
+
+<p>If none of the available licenses suit your use case, please <a href="mailto:floss@galtzo.com">contact us</a> to discuss a custom commercial license.</p>
+
+<h3 id="-copyright">© Copyright</h3>
+
+<p>See <a href="LICENSE.md">LICENSE.md</a> for the official copyright notice.</p>
+
+<details>
+  <summary>Copyright holders</summary>
+
+  <ul>
+    <li>Copyright (c) 2026 Peter H. Boling</li>
+  </ul>
+
+</details>
+
+<h2 id="-a-request-for-help">🤑 A request for help</h2>
+
+<p>Maintainers have teeth and need to pay their dentists.<br>
+After getting laid off in an RIF in March, and encountering difficulty finding a new one,<br>
+I began spending most of my time building open source tools.<br>
+I’m hoping to be able to pay for my kids’ health insurance this month,<br>
+so if you value the work I am doing, I need your support.<br>
+Please consider sponsoring me or the project.</p>
+
+<p>To join the community or get help, use the RubyForum or Discord.</p>
+
+<p><a href="https://www.rubyforum.org/tag/kettle-dev"><img src="https://img.shields.io/discourse/topics?server=https%3A%2F%2Fwww.rubyforum.org&amp;style=for-the-badge&amp;logo=discourse&amp;label=Ruby%20Users%20Forum" alt="Ruby Users Forum"></a><br>
+<a href="https://discord.gg/3qme4XHNKN"><img src="https://img.shields.io/discord/1373797679469170758?style=for-the-badge&amp;logo=discord" alt="Live Chat on Discord"></a></p>
+
+<p>To say “thanks!” ☝️ Join the community or 👇️ send money.</p>
+
+<p><a href="https://opencollective.com/kettle-dev"><img src="https://img.shields.io/opencollective/all/kettle-dev?style=for-the-badge" alt="Sponsor kettle-dev/kettle-deps-floor on Open Source Collective"></a> 💌 <a href="https://github.com/sponsors/pboling"><img src="https://img.shields.io/badge/Sponsor_Me!-pboling-blue?style=for-the-badge&amp;logo=github" alt="Sponsor me on GitHub Sponsors"></a> 💌 <a href="https://liberapay.com/pboling/donate"><img src="https://img.shields.io/liberapay/goal/pboling.svg?style=for-the-badge&amp;logo=liberapay&amp;color=a51611" alt="Sponsor me on Liberapay"></a> 💌 <a href="https://www.paypal.com/paypalme/peterboling"><img src="https://img.shields.io/badge/donate-paypal-a51611.svg?style=for-the-badge&amp;logo=paypal&amp;color=0A0A0A" alt="Donate on PayPal"></a></p>
+
+<h3 id="please-give-the-project-a-star--">Please give the project a star ⭐ ♥.</h3>
+
+<p>Many parts of this project are actively managed by a <a href="https://github.com/structuredmerge/structuredmerge-ruby/tree/main/gems/kettle-jem">kettle-jem</a> smart template utilizing <a href="https://structuredmerge.org">StructuredMerge.org</a> merge contracts.</p>
+
+<p>Thanks for RTFM. ☺️</p>
+
+<!-- kettle-jem:metadata:start -->
+<p>| Field | Value |<br>
+|—|—|<br>
+| Package | kettle-deps-floor |<br>
+| Description | 💎 Discover and raise RubyGems dependency floors in gemspecs and configured template sources, with upgrade limits, dry-run reports, checks, and controlled commits. |<br>
+| Homepage | https://github.com/kettle-dev/kettle-deps-floor |<br>
+| Source | https://github.com/kettle-dev/kettle-deps-floor |<br>
+| License | <code>AGPL-3.0-only</code> |<br>
+| Funding | https://github.com/sponsors/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/kettle-dev, https://thanks.dev/u/gh/pboling, https://www.buymeacoffee.com/pboling |<br>
+<!-- kettle-jem:metadata:end --></p>
+</div></div>
+
+      <div id="footer">
+  Generated on Sat Oct 24 21:44:55 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.45 (ruby-4.0.7).
+</div>
+
+    </div>
+  </body>
+</html>
