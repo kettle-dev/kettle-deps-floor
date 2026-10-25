@@ -41,6 +41,7 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 
 Compatible with MRI Ruby 3.2.0+, JRuby, and TruffleRuby.
 CI workflows and Appraisals are generated for MRI Ruby 3.2.0+.
+The current MRI CI lane runs on Linux and macOS.
 This test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml` and
 may be higher than the gem's runtime compatibility floor when legacy Rubies are
 not practical for the current toolchain.
@@ -64,10 +65,6 @@ The _amazing_ test matrix is powered by the kettle-dev stack.
 | [turbo_tests2](https://clickgems.clickhouse.com/dashboard/turbo_tests2) | [GitHub](https://github.com/galtzo-floss/turbo_tests2) | parallel test execution | [![Total downloads for turbo_tests2](https://img.shields.io/gem/dt/turbo_tests2.svg?style=flat-square)](https://clickgems.clickhouse.com/dashboard/turbo_tests2) |
 
 </details>
-
-### CI Coverage
-
-The current MRI runtime matrix runs on linux, macos.
 
 ### Federated DVCS
 
