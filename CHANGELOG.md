@@ -65,6 +65,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Relicense to AGPL-3.0-only (matching kettle-dev, whose runtime API this gem uses) before first release; the SkyWalking Eyes workflow and .licenserc.yaml are removed, as license-eye only supports permissive main licenses.
 
+- [kc] kettle-jem/prepare: updated 3 project files:
+  - dependencies (3)
+
 ### Deprecated
 
 ### Removed
