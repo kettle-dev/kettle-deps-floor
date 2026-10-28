@@ -18,10 +18,10 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from kettle-deps-floor.gemspec
 gemspec
 
-gem "kettle-family", "~> 1.3", ">= 1.3.33"
+gem "kettle-family", "~> 1.3", ">= 1.3.35"
 
 # Local workspace dependency wiring for *_local.gemfile overrides
-gem "nomono", "~> 1.1", ">= 1.1.15", require: false # ruby >= 3.2.0
+gem "nomono", "~> 1.1", ">= 1.1.16", require: false # ruby >= 3.2.0
 
 # Direct sibling dependencies (env-switched via KETTLE_DEV_DEV)
 direct_sibling_gems = %w[
@@ -44,7 +44,7 @@ if direct_sibling_gems.any? &&
   # Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
   # Bundler records that dependency during Gemfile evaluation, but it does not
   # activate that exact version before the immediate `require "nomono/bundler"`.
-  nomono_activation_requirements = ["~> 1.1", ">= 1.1.15"]
+  nomono_activation_requirements = ["~> 1.1", ">= 1.1.16"]
   nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
   nomono_already_activated = Gem.loaded_specs["nomono"]
   nomono_lockfile = File.expand_path("Gemfile.lock", __dir__)
@@ -81,7 +81,7 @@ if direct_sibling_gems.any? &&
 
     eval_nomono_gems(
       gems: direct_sibling_gems,
-      requirements: {"kettle-dev" => ["~> 3.1", ">= 3.1.24"], "kettle-ndjson" => ["~> 0.1", ">= 0.1.20"], "kettle-test" => ["~> 2.0", ">= 2.0.27"]},
+      requirements: {"kettle-dev" => ["~> 3.1", ">= 3.1.25"], "kettle-ndjson" => ["~> 0.1", ">= 0.1.20"], "kettle-test" => ["~> 2.0", ">= 2.0.28"]},
       prefix: "KETTLE_DEV",
       path_env: "KETTLE_DEV_DEV",
       root: ["src", "my", "kettle-dev"]
