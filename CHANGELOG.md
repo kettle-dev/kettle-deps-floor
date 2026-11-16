@@ -22,11 +22,24 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- [kc] kettle-jem/prepare: updated 5 project files:
+  - dependencies (5)
+
+- [kc] kettle-jem/template: updated 6 project files:
+  - documentation (1)
+  - other (1)
+  - workflows (4)
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- kettle-jem-template-20260720-004 - MRI-only projects now omit JRuby and
+  TruffleRuby workflow jobs.
+
+- [kc] mri-only-engines: Limit supported Ruby engines to MRI; the required tree-sitter language pack cannot be installed on TruffleRuby.
 
 ### Security
 
