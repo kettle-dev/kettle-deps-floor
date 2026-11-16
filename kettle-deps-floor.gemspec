@@ -99,7 +99,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Utilities
-  spec.add_dependency("kettle-changelog", "~> 1.0", ">= 1.0.18")
+  spec.add_dependency("kettle-changelog", "~> 1.0", ">= 1.0.19")
   spec.add_dependency("kettle-dev", "~> 3.1", ">= 3.1.29")
   spec.add_dependency("kettle-ndjson", "~> 0.1", ">= 0.1.24")              # shared NDJSON event stream
   spec.add_dependency("prism", ">= 1.3")                                 # AST source parsing; default gem only on Ruby 3.3+
