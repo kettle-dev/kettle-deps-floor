@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
+require "kettle/changelog"
 require "kettle/ndjson"
 require "open3"
 require "optparse"
@@ -129,18 +130,34 @@ module Kettle
 
         def self.write_changelog(options, config, result, defaults)
           key = config.fetch("changelog_key", defaults.fetch(:changelog_key, "kettle-deps-floor"))
-          details = result.fetch(:planned_changes).group_by { |change| change.fetch(:name) }.map do |name, changes|
-            initial = changes.map { |change| Gem::Version.new(change.fetch(:current_floor)) }.min
-            latest = changes.map { |change| Gem::Version.new(change.fetch(:new_floor)) }.max
-            "  - #{name} (>= #{initial} -> >= #{latest})"
-          end
           label = config.fetch("changelog_entry", defaults.fetch(:changelog_entry, "Update dependency floors:"))
-          entry = ([label] + details).join("\n")
-          command = ["kettle-changelog", "--upsert-unreleased-entry", "--section", "Changed", "--key", key, "--entry", entry]
-          stdout, stderr, status = Open3.capture3(*command, chdir: options.fetch(:project_root))
-          raise "kettle-changelog failed: #{stderr.empty? ? stdout : stderr}" unless status.success?
+          entry = lambda do |matches|
+            changes = matches.flat_map { |match| changelog_floor_changes(match.fetch(:source), key) } + result.fetch(:planned_changes)
+            details = changes.group_by { |change| change.fetch(:name) }.sort.map do |name, records|
+              initial = records.map { |change| Gem::Version.new(change.fetch(:current_floor)) }.min
+              latest = records.map { |change| Gem::Version.new(change.fetch(:new_floor)) }.max
+              "  - #{name} (>= #{initial} -> >= #{latest})"
+            end
+            ([label] + details).join("\n")
+          end
+          update = Kettle::Changelog::KeyedEntryUpserter.new(
+            section: "Changed", key: key, entry: entry, root: options.fetch(:project_root)
+          ).run
+          {status: "updated", output: update.fetch(:matched)}
+        end
 
-          {status: "updated", output: stdout.strip}
+        def self.changelog_floor_changes(source, key)
+          source.lines.drop(1).filter_map do |line|
+            text = line.strip
+            next if text.empty?
+
+            name, separator, range = text.delete_prefix("- ").partition(" (>= ")
+            first, arrow, last = range.delete_suffix(")").partition(" -> >= ")
+            unless text.start_with?("- ") && !separator.empty? && !arrow.empty? && range.end_with?(")") && !name.empty? && !first.empty? && !last.empty?
+              raise "Cannot preserve changelog entry #{key}: unrecognized line #{text.inspect}"
+            end
+            {name: name, current_floor: first, new_floor: last}
+          end
         end
 
         def self.dirty_paths(root, paths)
