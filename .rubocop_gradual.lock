@@ -1,5 +1,5 @@
 {
-  "kettle-deps-floor.gemspec:1499506570": [
+  "kettle-deps-floor.gemspec:1644864910": [
     [19, 32, 10, "Gemspec/RequiredRubyVersion: `required_ruby_version` and `TargetRubyVersion` (3.2, which may be specified in .rubocop.yml) should be equal.", 3888670706]
   ]
 }

@@ -22,6 +22,23 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.1.3] - 2026-11-16
+
+- TAG: [v0.1.3][0.1.3t]
+- COVERAGE: 99.21% -- 377/380 lines in 5 files
+- BRANCH COVERAGE: 82.21% -- 134/163 branches in 5 files
+- 45.00% documented
+
+### Changed
+
 - [kc] kettle-jem/prepare: updated 15 project files:
   - dependencies (15)
 
@@ -31,15 +48,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - other (3)
   - workflows (9)
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - [kc] ruby-minimum-alignment: Align the minimum supported Ruby version with kettle-changelog’s Ruby 4.0 requirement, correcting the previously declared Ruby 3.2 floor.
-
-### Security
 
 ## [0.1.2] - 2026-10-28
 
@@ -178,7 +189,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Whitelist the gem itself for license-eye (it is unresolvable from the registry before first release) and commit a release-mode Gemfile.lock with checksums and no local path remotes.
 
-[Unreleased]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.3...HEAD
+[0.1.3]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.2...v0.1.3
+[0.1.3t]: https://github.com/kettle-dev/kettle-deps-floor/releases/tag/v0.1.3
 [0.1.2]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.1...v0.1.2
 [0.1.2t]: https://github.com/kettle-dev/kettle-deps-floor/releases/tag/v0.1.2
 [0.1.1]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.0...v0.1.1
