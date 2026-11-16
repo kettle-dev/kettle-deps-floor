@@ -18,13 +18,14 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from kettle-deps-floor.gemspec
 gemspec
 
-gem "kettle-family", "~> 1.3", ">= 1.3.35"
+gem "kettle-family", "~> 1.3", ">= 1.3.44"
 
 # Local workspace dependency wiring for *_local.gemfile overrides
-gem "nomono", "~> 1.1", ">= 1.1.17", require: false # ruby >= 3.2.0
+gem "nomono", "~> 1.1", ">= 1.1.18", require: false # ruby >= 3.2.0
 
 # Direct sibling dependencies (env-switched via KETTLE_DEV_DEV)
 direct_sibling_gems = %w[
+  kettle-changelog
   kettle-dev
   kettle-ndjson
   kettle-gha-pins
@@ -44,7 +45,7 @@ if direct_sibling_gems.any? &&
   # Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
   # Bundler records that dependency during Gemfile evaluation, but it does not
   # activate that exact version before the immediate `require "nomono/bundler"`.
-  nomono_activation_requirements = ["~> 1.1", ">= 1.1.17"]
+  nomono_activation_requirements = ["~> 1.1", ">= 1.1.18"]
   nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
   nomono_already_activated = Gem.loaded_specs["nomono"]
   nomono_lockfile = File.expand_path("Gemfile.lock", __dir__)
@@ -81,7 +82,7 @@ if direct_sibling_gems.any? &&
 
     eval_nomono_gems(
       gems: direct_sibling_gems,
-      requirements: {"kettle-dev" => ["~> 3.1", ">= 3.1.25"], "kettle-ndjson" => ["~> 0.1", ">= 0.1.20"], "kettle-test" => ["~> 2.0", ">= 2.0.28"]},
+      requirements: {"kettle-changelog" => ["~> 1.0", ">= 1.0.18"], "kettle-dev" => ["~> 3.1", ">= 3.1.29"], "kettle-ndjson" => ["~> 0.1", ">= 0.1.20"], "kettle-test" => ["~> 2.0", ">= 2.0.30"]},
       prefix: "KETTLE_DEV",
       path_env: "KETTLE_DEV_DEV",
       root: ["src", "my", "kettle-dev"]
@@ -106,9 +107,11 @@ end
 # wiring fails version solving for every command in the bundle.
 #
 # (env-switched: STRUCTUREDMERGE_DEV=/path/to/structuredmerge/ruby/gems for local paths)
+
 eval_gemfile "gemfiles/modular/templating.gemfile" if
   ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero? ||
-    ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false") != 0
+    ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false") != 0 ||
+    ENV.fetch("STRUCTUREDMERGE_CORE_DEV", "false").casecmp("false") != 0
 
 # Debugging
 eval_gemfile "gemfiles/modular/debug.gemfile"
