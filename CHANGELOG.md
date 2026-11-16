@@ -37,6 +37,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- [kc] ruby-minimum-alignment: Align the minimum supported Ruby version with kettle-changelog’s Ruby 4.0 requirement, correcting the previously declared Ruby 3.2 floor.
+
 ### Security
 
 ## [0.1.2] - 2026-10-28
