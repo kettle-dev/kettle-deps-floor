@@ -84,6 +84,14 @@ RSpec.describe Kettle::Deps::Floor::CLI do
     RUBY
     changelog = File.join(@root, "CHANGELOG.md")
     File.write(changelog, "# Changelog\n\n## [Unreleased]\n\n### Changed\n\n## [1.0.0]\n\n### Changed\n\n- [kc] kettle-deps-floor: Old\n  - old (>= 1.0 -> >= 2.0)\n")
+    allow(Open3).to receive(:capture3) do |*command, **_options|
+      entry = command.fetch(command.index("--entry") + 1)
+      unreleased, released = File.read(changelog).split("## [1.0.0]", 2)
+      unreleased.sub!(/^- \[kc\] kettle-deps-floor:.*(?:\n  - .*)*\n\n/, "")
+      unreleased.sub!("### Changed\n\n", "### Changed\n\n- [kc] kettle-deps-floor: #{entry}\n\n")
+      File.write(changelog, "#{unreleased}## [1.0.0]#{released}")
+      ["entry updated\n", "", instance_double(Process::Status, success?: true)]
+    end
     err = StringIO.new
 
     first = described_class.run(["--write", "--no-commit", "--target", "alpha=1.1.0", "--target", "beta=1.1.0", "--only", "alpha,beta", @root], out: StringIO.new, err: err)
