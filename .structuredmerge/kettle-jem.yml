@@ -142,8 +142,6 @@ project_emoji: ""
 # JRuby runtime is installed. Do not hand-edit a shared lockfile for JRuby.
 engines:
   - ruby
-  - jruby
-  - truffleruby
 
 # List the OS platforms this project's CI exercises. kettle-jem uses this to
 # generate the current.yml OS matrix and the README platform tier table.
