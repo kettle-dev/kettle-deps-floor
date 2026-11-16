@@ -129,7 +129,8 @@ module Kettle
 
         def self.write_changelog(options, config, result, defaults)
           key = config.fetch("changelog_key", defaults.fetch(:changelog_key, "kettle-deps-floor"))
-          details = result.fetch(:planned_changes).group_by { |change| change.fetch(:name) }.map do |name, changes|
+          changes = existing_changelog_changes(options.fetch(:project_root), key) + result.fetch(:planned_changes)
+          details = changes.group_by { |change| change.fetch(:name) }.sort.map do |name, changes|
             initial = changes.map { |change| Gem::Version.new(change.fetch(:current_floor)) }.min
             latest = changes.map { |change| Gem::Version.new(change.fetch(:new_floor)) }.max
             "  - #{name} (>= #{initial} -> >= #{latest})"
@@ -141,6 +142,29 @@ module Kettle
           raise "kettle-changelog failed: #{stderr.empty? ? stdout : stderr}" unless status.success?
 
           {status: "updated", output: stdout.strip}
+        end
+
+        def self.existing_changelog_changes(root, key)
+          path = File.join(root, "CHANGELOG.md")
+          return [] unless File.file?(path)
+
+          unreleased = File.read(path).split(/^##\s+/, 3).find { |section| section.match?(/\A\[?Unreleased\]?\s*$/i) }
+          return [] unless unreleased
+
+          changed = unreleased.split(/^###\s+/).find { |section| section.match?(/\AChanged\s*$/i) }
+          return [] unless changed
+
+          entry = changed.match(/^\s*- \[kc\] #{Regexp.escape(key)}:.*$(?<details>(?:\n[ \t]+.*|\n[ \t]*)*)/)
+          return [] unless entry
+
+          entry[:details].lines.filter_map do |line|
+            next if line.strip.empty?
+
+            match = line.match(/\A\s+- ([^\s]+) \(>= (\S+) -> >= (\S+)\)\s*\z/)
+            raise "Cannot preserve changelog entry #{key}: unrecognized line #{line.strip.inspect}" unless match
+
+            {name: match[1], current_floor: match[2], new_floor: match[3]}
+          end
         end
 
         def self.dirty_paths(root, paths)

@@ -75,6 +75,26 @@ RSpec.describe Kettle::Deps::Floor::CLI do
     expect(err.string).to eq("")
   end
 
+  it "accumulates overlapping and disjoint floors across changelog writes" do
+    gemspec = File.join(@root, "example.gemspec")
+    File.write(gemspec, <<~RUBY)
+      spec.add_dependency("alpha", ">= 1.0.0")
+      spec.add_dependency("beta", ">= 1.0.0")
+      spec.add_dependency("gamma", ">= 1.0.0")
+    RUBY
+    changelog = File.join(@root, "CHANGELOG.md")
+    File.write(changelog, "# Changelog\n\n## [Unreleased]\n\n### Changed\n\n## [1.0.0]\n\n### Changed\n\n- [kc] kettle-deps-floor: Old\n  - old (>= 1.0 -> >= 2.0)\n")
+    err = StringIO.new
+
+    first = described_class.run(["--write", "--no-commit", "--target", "alpha=1.1.0", "--target", "beta=1.1.0", "--only", "alpha,beta", @root], out: StringIO.new, err: err)
+    second = described_class.run(["--write", "--no-commit", "--target", "alpha=1.2.0", "--target", "gamma=1.1.0", "--only", "alpha,gamma", @root], out: StringIO.new, err: err)
+
+    expect([first, second]).to eq([0, 0]), err.string
+    unreleased = File.read(changelog).split("## [1.0.0]").first
+    expect(unreleased).to include("alpha (>= 1.0.0 -> >= 1.2.0)", "beta (>= 1.0.0 -> >= 1.1.0)", "gamma (>= 1.0.0 -> >= 1.1.0)")
+    expect(unreleased).not_to include("old (>=")
+  end
+
   it "commits a clean update when commit is enabled" do
     gemspec = File.join(@root, "example.gemspec")
     File.write(gemspec, %(spec.add_dependency("token-resolver", "~> 2.0", ">= 2.0.4")\n))
