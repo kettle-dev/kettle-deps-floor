@@ -22,11 +22,22 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- [kc] kettle-jem/prepare: updated 15 project files:
+  - dependencies (15)
+
+- [kc] kettle-jem/template: updated 17 project files:
+  - dependencies (4)
+  - documentation (1)
+  - other (3)
+  - workflows (9)
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- [kc] ruby-minimum-alignment: Align the minimum supported Ruby version with kettle-changelog’s Ruby 4.0 requirement, correcting the previously declared Ruby 3.2 floor.
 
 ### Security
 
