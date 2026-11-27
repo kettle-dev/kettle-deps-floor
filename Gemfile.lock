@@ -11,8 +11,8 @@ PATH
   remote: .
   specs:
     kettle-deps-floor (0.1.3)
-      kettle-changelog (~> 1.0, >= 1.0.19)
-      kettle-dev (~> 3.1, >= 3.1.29)
+      kettle-changelog (~> 1.0, >= 1.0.21)
+      kettle-dev (~> 3.1, >= 3.1.33)
       kettle-ndjson (~> 0.1, >= 0.1.24)
       prism (>= 1.3)
       version_gem (~> 1.1, >= 1.1.17)
@@ -611,7 +611,7 @@ PLATFORMS
   x86_64-linux-musl
 
 DEPENDENCIES
-  addressable (>= 2.9.2, < 3)
+  addressable (>= 2.10.0, < 3)
   anonymous_loader (~> 0.1, >= 0.1.5)
   appraisal2 (~> 3.2, >= 3.2.6)
   appraisal2-rubocop (~> 1.0, >= 1.0.5)
@@ -620,12 +620,12 @@ DEPENDENCIES
   cgi (~> 0.5)
   debug (>= 1.11.1)
   erb (~> 6.0, >= 6.0.7)
-  gem_bench (~> 2.0, >= 2.0.5)
-  gitmoji-regex (~> 2.0, >= 2.0.16)
+  gem_bench (~> 2.0, >= 2.0.6)
+  gitmoji-regex (~> 2.0, >= 2.0.17)
   irb (~> 1.17)
   kettle-deps-floor!
-  kettle-family (~> 1.3, >= 1.3.44)
-  kettle-soup-cover (~> 3.0, >= 3.0.16)
+  kettle-family (~> 1.3, >= 1.3.52)
+  kettle-soup-cover (~> 3.0, >= 3.0.17)
   kettle-test (~> 2.0, >= 2.0.30)
   kramdown (~> 2.6, >= 2.6.1)
   kramdown-parser-gfm (~> 1.1)
@@ -635,7 +635,7 @@ DEPENDENCIES
   rake (~> 13.0)
   rbs (>= 4.2.0)
   reek (~> 6.6, >= 6.6.0)
-  require_bench (~> 1.0, >= 1.0.4)
+  require_bench (~> 1.0, >= 1.0.5)
   rubocop-gradual (~> 0.4, >= 0.4.0)
   rubocop-lts (~> 24.2, >= 24.2.3)
   rubocop-lts-rspec (~> 1.0, >= 1.0.8)
@@ -650,10 +650,10 @@ DEPENDENCIES
   turbo_tests2 (~> 4.0, >= 4.0.2)
   webrick (~> 1.9)
   yaml-converter (~> 0.2, >= 0.2.8)
-  yard (~> 0.9, >= 0.9.45)
+  yard (~> 0.9, >= 0.9.46)
   yard-fence (~> 0.9, >= 0.9.12)
   yard-junk (~> 0.1, >= 0.1.0)
-  yard-lint (~> 1.13, >= 1.13.1)
+  yard-lint (~> 1.15, >= 1.15.0)
   yard-relative_markdown_links (~> 0.6)
   yard-timekeeper (~> 0.2, >= 0.2.11)
   yard-yaml (~> 0.2, >= 0.2.6)
