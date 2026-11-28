@@ -11,7 +11,7 @@ PATH
   remote: .
   specs:
     kettle-deps-floor (0.1.4)
-      kettle-changelog (~> 1.0, >= 1.0.21)
+      kettle-changelog (~> 1.0, >= 1.0.22)
       kettle-dev (~> 3.1, >= 3.1.34)
       kettle-ndjson (~> 0.1, >= 0.1.24)
       prism (>= 1.3)
@@ -156,9 +156,9 @@ GEM
       ast-merge (= 7.1.20)
       tree_haver (= 7.1.20)
       version_gem (~> 1.1, >= 1.1.17)
-    kettle-changelog (1.0.21)
+    kettle-changelog (1.0.22)
       ast-crispr-markdown-markly (~> 7.1, >= 7.1.1)
-      kettle-dev (~> 3.1, >= 3.1.31)
+      kettle-dev (~> 3.1, >= 3.1.34)
       version_gem (~> 1.1, >= 1.1.17)
     kettle-dev (3.1.34)
       emoji_regex (>= 15.0)
@@ -710,7 +710,7 @@ CHECKSUMS
   irb (1.19.0) sha256=55ee56acbdd6c9fe06a2e6909f46a24e5c41f45f16906bab04e8049cf46f1d27
   json (3.2.0) sha256=4a4e222a9ee6ffb296ab3171b6b39d85fec83afc4e7b57eee17edf68c74aec87
   json-merge (7.1.20) sha256=9a5008fa767bfc72a13aee8ebf064190c8bd6ffdab512090b4fa32f242640fb7
-  kettle-changelog (1.0.21) sha256=a0474aaa550627c63f07e839c2957d4f898c1beeef1ac58fe25a4be5356ac11a
+  kettle-changelog (1.0.22) sha256=294e172202c958be423fc8757613baf59837d6469eddb5b36638977cd6a0fdbb
   kettle-deps-floor (0.1.4)
   kettle-dev (3.1.34) sha256=f6d744b646eb3f9465f3e1bcdf6187123cc7807ff661b47876e9d41cea479db9
   kettle-family (1.3.53) sha256=93887c71deb059522cc99ce3a3131317c27167c8ca8a8d4c9880cc9a7f661a64
