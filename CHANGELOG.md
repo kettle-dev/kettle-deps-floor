@@ -22,6 +22,23 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [0.1.4] - 2026-11-28
+
+- TAG: [v0.1.4][0.1.4t]
+- COVERAGE: 99.21% -- 377/380 lines in 5 files
+- BRANCH COVERAGE: 82.21% -- 134/163 branches in 5 files
+- 45.00% documented
+
+### Changed
+
 - [kc] kettle-jem/prepare: updated 11 project files since the last release:
   - dependencies (11)
 
@@ -30,14 +47,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - dependencies (3)
   - other (2)
   - workflows (2)
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 
 ## [0.1.3] - 2026-11-16
 
@@ -202,7 +211,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Whitelist the gem itself for license-eye (it is unresolvable from the registry before first release) and commit a release-mode Gemfile.lock with checksums and no local path remotes.
 
-[Unreleased]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.3...HEAD
+[Unreleased]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.4...HEAD
+[0.1.4]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.3...v0.1.4
+[0.1.4t]: https://github.com/kettle-dev/kettle-deps-floor/releases/tag/v0.1.4
 [0.1.3]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.2...v0.1.3
 [0.1.3t]: https://github.com/kettle-dev/kettle-deps-floor/releases/tag/v0.1.3
 [0.1.2]: https://github.com/kettle-dev/kettle-deps-floor/compare/v0.1.1...v0.1.2
